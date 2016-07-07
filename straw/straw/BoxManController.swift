@@ -14,19 +14,17 @@ class BoxManController : UIViewController, UITableViewDelegate, UITableViewDataS
     @IBOutlet weak var dialogBoxSelection: UIView!
     @IBOutlet weak var tblWorkers: UITableView!
     @IBOutlet weak var btnFinish: UIButton!
+    @IBOutlet weak var lblFinished: UILabel!
+    @IBOutlet weak var btnClear: UIButton!
+    
+    
+    var lastIndex = NSIndexPath()
+    
     
     // MARK: Initial load
     override func viewDidLoad() {
         super.viewDidLoad()
-        adjustDialogs()
-    }
-    
-    func adjustDialogs(){
-        let radius = 5
-        dialogBoxSelection.layer.cornerRadius = CGFloat(radius)
-        dialogBoxSelection.layer.borderWidth = 1
-        dialogBoxSelection.layer.borderColor = UIColor.blueColor().CGColor
-        
+        setupBoxSelection()
     }
     
     // MARK: Box selection
@@ -38,23 +36,36 @@ class BoxManController : UIViewController, UITableViewDelegate, UITableViewDataS
         hideBoxSelection()
     }
     
-    func hideBoxSelection() {
-        self.dialogBoxSelection.alpha = 1
+    func animateBoxSelection(from: CGFloat, to: CGFloat){
+        self.dialogBoxSelection.alpha = from
         
         UIView.animateWithDuration(0.6, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
-            self.dialogBoxSelection.alpha = 0
+            self.dialogBoxSelection.alpha = to
             }, completion: nil)
+
+    }
+    
+    func setupBoxSelection(){
+        let radius = 5
+        dialogBoxSelection.layer.cornerRadius = CGFloat(radius)
+        dialogBoxSelection.layer.borderWidth = 1
+        dialogBoxSelection.layer.borderColor = UIColor.blueColor().CGColor
+        btnFinish.enabled = false
+        lblFinished.enabled = false
+        btnClear.enabled = false
     }
     
     func showBoxSelection() {
-        self.dialogBoxSelection.alpha = 0
-        
-        UIView.animateWithDuration(0.6, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
-            self.dialogBoxSelection.alpha = 1
-            }, completion: nil)
+        animateBoxSelection(0, to: 1)
+        tblWorkers.allowsSelection = false
     }
     
-    
+    func hideBoxSelection() {
+        animateBoxSelection(1, to: 0)
+        tblWorkers.allowsSelection = true
+        tblWorkers.deselectRowAtIndexPath(lastIndex, animated: true)
+        tblWorkers.reloadData()
+    }
     
     // MARK: Table view
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -63,7 +74,7 @@ class BoxManController : UIViewController, UITableViewDelegate, UITableViewDataS
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 1
+        return 10
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -78,8 +89,10 @@ class BoxManController : UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        lastIndex = indexPath
+        
         let cell = tblWorkers.dequeueReusableCellWithIdentifier("BoxCellID", forIndexPath: indexPath) as! BoxManCell
-        cell.selectionStyle = .None
+        //cell.selectionStyle = .None
         
         
         showBoxSelection()

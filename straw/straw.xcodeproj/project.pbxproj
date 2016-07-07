@@ -23,6 +23,9 @@
 		74C0935C1D2E40EB00545C2B /* DB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C0935B1D2E40EB00545C2B /* DB.swift */; };
 		74C0935E1D2E45B900545C2B /* BoxManCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C0935D1D2E45B900545C2B /* BoxManCell.swift */; };
 		74C093601D2E45C400545C2B /* BoxManController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C0935F1D2E45C400545C2B /* BoxManController.swift */; };
+		74C093621D2E535C00545C2B /* Contractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C093611D2E535C00545C2B /* Contractor.swift */; };
+		74C093641D2E536700545C2B /* Worker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C093631D2E536700545C2B /* Worker.swift */; };
+		74E92D1A1D2E6AE00009DA07 /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E92D191D2E6AE00009DA07 /* NSDate.swift */; };
 		A2C63658E73EE9952E93501E /* Pods_straw.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B3F0F0C6A9280FBF0ACA90F /* Pods_straw.framework */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +50,9 @@
 		74C0935B1D2E40EB00545C2B /* DB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DB.swift; sourceTree = "<group>"; };
 		74C0935D1D2E45B900545C2B /* BoxManCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxManCell.swift; sourceTree = "<group>"; };
 		74C0935F1D2E45C400545C2B /* BoxManController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxManController.swift; sourceTree = "<group>"; };
+		74C093611D2E535C00545C2B /* Contractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contractor.swift; sourceTree = "<group>"; };
+		74C093631D2E536700545C2B /* Worker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Worker.swift; sourceTree = "<group>"; };
+		74E92D191D2E6AE00009DA07 /* NSDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDate.swift; sourceTree = "<group>"; };
 		9B3F0F0C6A9280FBF0ACA90F /* Pods_straw.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_straw.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -93,6 +99,7 @@
 		74C093341D2E388F00545C2B /* straw */ = {
 			isa = PBXGroup;
 			children = (
+				74E92D181D2E6A8D0009DA07 /* helper */,
 				74C0934C1D2E396300545C2B /* view */,
 				74C0934B1D2E395000545C2B /* controller */,
 				74C0934A1D2E394B00545C2B /* model */,
@@ -124,6 +131,8 @@
 			isa = PBXGroup;
 			children = (
 				74C0935B1D2E40EB00545C2B /* DB.swift */,
+				74C093611D2E535C00545C2B /* Contractor.swift */,
+				74C093631D2E536700545C2B /* Worker.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -143,6 +152,14 @@
 				74C093391D2E388F00545C2B /* Main.storyboard */,
 			);
 			name = view;
+			sourceTree = "<group>";
+		};
+		74E92D181D2E6A8D0009DA07 /* helper */ = {
+			isa = PBXGroup;
+			children = (
+				74E92D191D2E6AE00009DA07 /* NSDate.swift */,
+			);
+			name = helper;
 			sourceTree = "<group>";
 		};
 		927731D51B4A6C6CC7718F59 /* Frameworks */ = {
@@ -287,7 +304,10 @@
 				74C093381D2E388F00545C2B /* ViewController.swift in Sources */,
 				74C093361D2E388F00545C2B /* AppDelegate.swift in Sources */,
 				74C093601D2E45C400545C2B /* BoxManController.swift in Sources */,
+				74C093621D2E535C00545C2B /* Contractor.swift in Sources */,
 				74C0935C1D2E40EB00545C2B /* DB.swift in Sources */,
+				74E92D1A1D2E6AE00009DA07 /* NSDate.swift in Sources */,
+				74C093641D2E536700545C2B /* Worker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

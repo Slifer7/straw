@@ -309,12 +309,6 @@
                                             <action selector="btnCancel_Click:" destination="58j-zH-CiK" eventType="touchUpInside" id="y5V-JU-fPx"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Umd-BJ-dal">
-                                        <rect key="frame" x="311" y="190" width="123" height="30"/>
-                                        <state key="normal" title="Wrong, clear info">
-                                            <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I1D-nA-yFP">
                                         <rect key="frame" x="167" y="190" width="76" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -322,6 +316,12 @@
                                         <connections>
                                             <action selector="btnTake_Click:" destination="58j-zH-CiK" eventType="touchUpInside" id="leh-F7-Vvw"/>
                                         </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Umd-BJ-dal">
+                                        <rect key="frame" x="326" y="190" width="123" height="30"/>
+                                        <state key="normal" title="Wrong, clear info">
+                                            <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -345,8 +345,10 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btnClear" destination="Umd-BJ-dal" id="m6I-e6-LFl"/>
                         <outlet property="btnFinish" destination="zBg-fw-L9M" id="85G-fF-xQ3"/>
                         <outlet property="dialogBoxSelection" destination="LoN-dm-H15" id="maf-ND-nDC"/>
+                        <outlet property="lblFinished" destination="4G4-Z7-5Hb" id="uN5-Q2-yk7"/>
                         <outlet property="tblWorkers" destination="RyK-bN-h9K" id="UsQ-Gm-5cl"/>
                         <outlet property="txtFilterName" destination="SwZ-YZ-lRZ" id="zq8-9q-mUa"/>
                     </connections>
