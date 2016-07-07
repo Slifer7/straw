@@ -16,20 +16,61 @@ class BoxManController : UIViewController, UITableViewDelegate, UITableViewDataS
     @IBOutlet weak var btnFinish: UIButton!
     @IBOutlet weak var lblFinished: UILabel!
     @IBOutlet weak var btnClear: UIButton!
+    @IBOutlet weak var txtBoxNo: UITextField!
+    @IBOutlet weak var pickerBoxes: UIPickerView!
     
-    
+    // MARK: model section
     var lastIndex = NSIndexPath()
-    
+    var contractors = [Contractor]()
+    var workers = [[Worker]]()
     
     // MARK: Initial load
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Setup UI
         setupBoxSelection()
+        
+        // Setup model
+        let data = DB.GetWorkersGroupByContractor()
+        contractors = data.Contractors
+        workers = data.Workers        
     }
     
     // MARK: Box selection
     @IBAction func btnTake_Click(sender: UIButton) {
+        if txtBoxNo.text?.characters.count == 0{
+            MessageBox.Show(self, title: "Error", message: "Please specify box number!")
+        } else {
+            let boxType = box[pickerBoxes.selectedRowInComponent(0)]
+            let boxNo = Int(txtBoxNo.text!)!
+            
+            let worker = workers[lastIndex.section][lastIndex.row]
+            worker.Status = "Taken"
+            worker.Day = CurrentDate.Day()
+            worker.Month = CurrentDate.Month()
+            worker.Year = CurrentDate.Year()
+            
+            worker.BoxType = boxType
+            worker.BoxNumber = boxNo
+            
+            worker.LastActionTime = CurrentDate.ShortTimeString()
+            
+            hideBoxSelection()
+            tblWorkers.reloadData()
+ 
+            DB.SaveWorkerAssignment(worker)
+        }
+    }
+    
+    @IBAction func btnFinish_Click(sender: UIButton) {
+        let worker = workers[lastIndex.section][lastIndex.row]
+        worker.Status = "Finished"
+        worker.LastActionTime = CurrentDate.ShortTimeString()
+        hideBoxSelection()
+        tblWorkers.reloadData()
         
+        DB.SaveWorkerAssignment(worker)
     }
 
     @IBAction func btnCancel_Click(sender: UIButton) {
@@ -39,9 +80,9 @@ class BoxManController : UIViewController, UITableViewDelegate, UITableViewDataS
     func animateBoxSelection(from: CGFloat, to: CGFloat){
         self.dialogBoxSelection.alpha = from
         
-        UIView.animateWithDuration(0.6, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+        UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             self.dialogBoxSelection.alpha = to
-            }, completion: nil)
+        }, completion: nil)
 
     }
     
@@ -51,8 +92,11 @@ class BoxManController : UIViewController, UITableViewDelegate, UITableViewDataS
         dialogBoxSelection.layer.borderWidth = 1
         dialogBoxSelection.layer.borderColor = UIColor.blueColor().CGColor
         btnFinish.enabled = false
+        btnFinish.alpha = 0.5
         lblFinished.enabled = false
+        lblFinished.alpha = 0.5
         btnClear.enabled = false
+        btnClear.alpha = 0.2
     }
     
     func showBoxSelection() {
@@ -63,39 +107,97 @@ class BoxManController : UIViewController, UITableViewDelegate, UITableViewDataS
     func hideBoxSelection() {
         animateBoxSelection(1, to: 0)
         tblWorkers.allowsSelection = true
-        tblWorkers.deselectRowAtIndexPath(lastIndex, animated: true)
+        
         tblWorkers.reloadData()
+    }
+    
+    @IBAction func btnClearInfo_Click(sender: UIButton) {
+        let worker = workers[lastIndex.section][lastIndex.row]
+        worker.Status = ""
+        worker.BoxType = ""
+        worker.BoxNumber = -1
+        tblWorkers.reloadData()
+        hideBoxSelection()
+        
+        DB.DeleteAssignment(worker)
     }
     
     // MARK: Table view
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return contractors.count
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 10
+        return workers[section].count
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return ""
+        return contractors[section].ContractorName
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tblWorkers.dequeueReusableCellWithIdentifier("BoxCellID", forIndexPath: indexPath) as! BoxManCell
+        let worker = workers[indexPath.section][indexPath.row]
+        cell.txtWorkerName.text = worker.WorkerName
         
+        if (worker.Status == "") {// Nothing
+            cell.imgBoxTaken.hidden = true
+            cell.txtBoxType.hidden = true
+            cell.imgFinish.hidden = true
+            cell.txtFinish.hidden = true
+            cell.txtLastActionTime.hidden = true
+            cell.txtLastActionTime.text = ""
+        } else if (worker.Status == "Taken"){
+            cell.imgBoxTaken.hidden = false
+            cell.txtBoxType.hidden = false
+            cell.txtBoxType.text = worker.BoxType
+            cell.imgFinish.hidden = true
+            cell.txtFinish.hidden = true
+            cell.txtLastActionTime.hidden = false
+            cell.txtLastActionTime.text = "Box #\(worker.BoxNumber). Last action time: \(worker.LastActionTime)"
+        } else if (worker.Status == "Finished"){
+            cell.imgBoxTaken.hidden = false
+            cell.txtBoxType.hidden = false
+            cell.imgFinish.hidden = false
+            cell.txtFinish.hidden = false
+            cell.txtLastActionTime.text = "Box #\(worker.BoxNumber). Last action time: \(worker.LastActionTime)"
+        }
         
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         lastIndex = indexPath
+        let worker = workers[indexPath.section][indexPath.row]
         
-        let cell = tblWorkers.dequeueReusableCellWithIdentifier("BoxCellID", forIndexPath: indexPath) as! BoxManCell
-        //cell.selectionStyle = .None
-        
-        
-        showBoxSelection()
+        if worker.Status == "" {
+            DisableFinishButton()
+            showBoxSelection()
+        } else if worker.Status == "Taken" {
+            AutoFillDataToBoxSelectionDialog(worker)
+            EnableFinishButton()
+            showBoxSelection()
+        }
+    }
+    
+    func EnableFinishButton(){
+        btnFinish.enabled = true
+        lblFinished.enabled = true
+        btnClear.alpha = 1
+        btnClear.enabled = true
+    }
+    
+    func DisableFinishButton(){
+        btnFinish.enabled = false
+        lblFinished.enabled = false
+        btnClear.alpha = 0.2
+        btnClear.enabled = true
+    }
+    
+    func AutoFillDataToBoxSelectionDialog(worker: Worker){
+        pickerBoxes.selectRow(box.indexOf(worker.BoxType)!, inComponent: 0, animated: true)
+        txtBoxNo.text = String(worker.BoxNumber)
     }
     
     // MARK: Picker view
@@ -112,6 +214,4 @@ class BoxManController : UIViewController, UITableViewDelegate, UITableViewDataS
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return box[row]
     }
-
-
 }

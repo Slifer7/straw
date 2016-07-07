@@ -70,19 +70,19 @@ extension NSDate
 }
 
 class CurrentDate {
-    func Day() -> Int {
+    static func Day() -> Int {
         return NSDate().Day()
     }
     
-    func Month() -> Int {
+    static func Month() -> Int {
         return NSDate().Month()
     }
     
-    func Year() -> Int {
+    static func Year() -> Int {
         return NSDate().Year()
     }
     
-    func ShortTimeString() -> String {
+    static func ShortTimeString() -> String {
         let hour = NSDate().Hour()
         let minute = NSDate().Minute()
         let second = NSDate().Second()

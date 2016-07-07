@@ -220,9 +220,9 @@
                                                     </constraints>
                                                 </view>
                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last action time: 8:15:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YTZ-T4-tzZ">
-                                                    <rect key="frame" x="334" y="38" width="218" height="21"/>
+                                                    <rect key="frame" x="152" y="38" width="400" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="218" id="Kuc-it-CAr"/>
+                                                        <constraint firstAttribute="width" constant="400" id="Kuc-it-CAr"/>
                                                         <constraint firstAttribute="height" constant="21" id="RjF-dT-Xsh"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -275,6 +275,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zBg-fw-L9M">
                                         <rect key="frame" x="346" y="66" width="96" height="96"/>
                                         <state key="normal" title="Button" image="finish.png"/>
+                                        <connections>
+                                            <action selector="btnFinish_Click:" destination="58j-zH-CiK" eventType="touchUpInside" id="e5B-Ud-VAk"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Finished" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4G4-Z7-5Hb">
                                         <rect key="frame" x="359" y="155" width="70" height="21"/>
@@ -322,6 +325,9 @@
                                         <state key="normal" title="Wrong, clear info">
                                             <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="btnClearInfo_Click:" destination="58j-zH-CiK" eventType="touchUpInside" id="E8g-dY-kEL"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -349,7 +355,9 @@
                         <outlet property="btnFinish" destination="zBg-fw-L9M" id="85G-fF-xQ3"/>
                         <outlet property="dialogBoxSelection" destination="LoN-dm-H15" id="maf-ND-nDC"/>
                         <outlet property="lblFinished" destination="4G4-Z7-5Hb" id="uN5-Q2-yk7"/>
+                        <outlet property="pickerBoxes" destination="nR5-uf-OOP" id="M7I-9N-Is9"/>
                         <outlet property="tblWorkers" destination="RyK-bN-h9K" id="UsQ-Gm-5cl"/>
+                        <outlet property="txtBoxNo" destination="j7P-dH-OPx" id="lgd-1y-ihx"/>
                         <outlet property="txtFilterName" destination="SwZ-YZ-lRZ" id="zq8-9q-mUa"/>
                     </connections>
                 </viewController>

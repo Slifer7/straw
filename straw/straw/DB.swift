@@ -74,7 +74,7 @@ class DB {
         let status = Expression<String>("status")
         
         let boxType = Expression<String>("boxtype")
-        let boxNo = Expression<String>("boxno")
+        let boxNo = Expression<Int64>("boxno")
         let lastActionTime = Expression<String>("time")
         
         try! db.run(boxasg.create(ifNotExists: true){ t in
@@ -177,7 +177,18 @@ class DB {
         let contractorid = Expression<Int64>("contractorid")
         
         for row in try! db.prepare(table.select(id, name).filter(contractorid == cid)) {
-            list += [ Worker(id: row[id], name: row[name], cid: cid) ]
+            let worker = Worker(id: row[id], name: row[name], cid: cid)
+            
+            let asgInfo = self.GetAssignment(Int(worker.Workerid), day: CurrentDate.Day(), month: CurrentDate.Month(), year: CurrentDate.Year())
+            worker.Day = asgInfo.Day
+            worker.Month = asgInfo.Month
+            worker.Year = asgInfo.Year
+            worker.Status = asgInfo.Status
+            worker.BoxType = asgInfo.BoxType
+            worker.BoxNumber = asgInfo.BoxNumber
+            worker.LastActionTime = asgInfo.LastActionTime
+            
+            list += [worker]
         }
         
         return list
@@ -194,4 +205,83 @@ class DB {
         
         return (contractors, workers)
     }
+    
+    static func GetAssignment(wid: Int, day: Int, month: Int, year: Int) -> Worker{
+        self.CreateDbIfNeeded()
+        let db = GetDB()
+        
+        let table = Table("boxassignment")
+        let workerid = Expression<Int64>("workerid")
+        
+        let d = Expression<Int64>("day")
+        let m = Expression<Int64>("month")
+        let y = Expression<Int64>("year")
+        
+        let status = Expression<String>("status")
+        
+        let boxType = Expression<String>("boxtype")
+        let boxNo = Expression<Int64>("boxno")
+        let lastActionTime = Expression<String>("time")
+        
+        let row = db.pluck(table.filter(workerid == Int64(wid) && d == Int64(day) && m == Int64(month) && y == Int64(year)))
+        let worker = Worker(id: -1, name: "", cid: -1)
+        
+        if row != nil{
+            worker.Day = day
+            worker.Month = month
+            worker.Year = year
+            worker.Status = row![status]
+            worker.BoxType = row![boxType]
+            worker.BoxNumber = Int(row![boxNo])
+            worker.LastActionTime = row![lastActionTime]
+        }
+        
+        return worker
+    }
+    
+    // Lưu thông tin của worker xuống bảng phân công
+    static func SaveWorkerAssignment(worker: Worker){
+        self.CreateDbIfNeeded()
+        let db = GetDB()
+        
+        let table = Table("boxassignment")
+        let workerid = Expression<Int64>("workerid")
+        
+        let day = Expression<Int64>("day")
+        let month = Expression<Int64>("month")
+        let year = Expression<Int64>("year")
+        
+        let status = Expression<String>("status")
+        
+        let boxType = Expression<String>("boxtype")
+        let boxNo = Expression<Int64>("boxno")
+        let lastActionTime = Expression<String>("time")
+        
+        // Kiểm tra tồn tại trong bảng phân công chưa
+        let result = table.filter(workerid == worker.Workerid && day == Int64(worker.Day) && month == Int64(worker.Month) && year == Int64(worker.Year))
+        if try! db.run(result.update(status <- worker.Status, boxType <- worker.BoxType, boxNo <- Int64(worker.BoxNumber), lastActionTime <- worker.LastActionTime)) > 0 {
+            
+        } else { // Chưa tồn tại nên phải chèn
+            try! db.run(table.insert(workerid <- worker.Workerid, day <- Int64(worker.Day), month <- Int64(worker.Day), year <- Int64(worker.Year),
+                status <- worker.Status, boxType <- worker.BoxType, boxNo <- Int64(worker.BoxNumber), lastActionTime <- worker.LastActionTime))
+        }
+        
+    }
+    
+    static func DeleteAssignment(worker: Worker){
+        self.CreateDbIfNeeded()
+        let db = GetDB()
+        
+        let table = Table("boxassignment")
+        let workerid = Expression<Int64>("workerid")
+        
+        let day = Expression<Int64>("day")
+        let month = Expression<Int64>("month")
+        let year = Expression<Int64>("year")
+        
+        // Kiểm tra tồn tại trong bảng phân công chưa
+        let result = table.filter(workerid == worker.Workerid && day == Int64(worker.Day) && month == Int64(worker.Month) && year == Int64(worker.Year))
+        print(try! db.run(result.delete()))
+    }
+    
 }
