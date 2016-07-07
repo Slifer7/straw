@@ -20,6 +20,9 @@
 		74C093581D2E3A2B00545C2B /* finish.png in Resources */ = {isa = PBXBuildFile; fileRef = 74C093511D2E3A2B00545C2B /* finish.png */; };
 		74C093591D2E3A2B00545C2B /* statistics.png in Resources */ = {isa = PBXBuildFile; fileRef = 74C093521D2E3A2B00545C2B /* statistics.png */; };
 		74C0935A1D2E3A2B00545C2B /* worker.png in Resources */ = {isa = PBXBuildFile; fileRef = 74C093531D2E3A2B00545C2B /* worker.png */; };
+		74C0935C1D2E40EB00545C2B /* DB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C0935B1D2E40EB00545C2B /* DB.swift */; };
+		74C0935E1D2E45B900545C2B /* BoxManCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C0935D1D2E45B900545C2B /* BoxManCell.swift */; };
+		74C093601D2E45C400545C2B /* BoxManController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C0935F1D2E45C400545C2B /* BoxManController.swift */; };
 		A2C63658E73EE9952E93501E /* Pods_straw.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B3F0F0C6A9280FBF0ACA90F /* Pods_straw.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,7 +36,7 @@
 		74C0933C1D2E388F00545C2B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		74C0933F1D2E388F00545C2B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		74C093411D2E388F00545C2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		74C093471D2E38D600545C2B /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		74C093471D2E38D600545C2B /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		74C0934D1D2E3A2B00545C2B /* berry.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = berry.png; sourceTree = "<group>"; };
 		74C0934E1D2E3A2B00545C2B /* boxman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = boxman.png; sourceTree = "<group>"; };
 		74C0934F1D2E3A2B00545C2B /* contractor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = contractor.png; sourceTree = "<group>"; };
@@ -41,6 +44,9 @@
 		74C093511D2E3A2B00545C2B /* finish.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = finish.png; sourceTree = "<group>"; };
 		74C093521D2E3A2B00545C2B /* statistics.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = statistics.png; sourceTree = "<group>"; };
 		74C093531D2E3A2B00545C2B /* worker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = worker.png; sourceTree = "<group>"; };
+		74C0935B1D2E40EB00545C2B /* DB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DB.swift; sourceTree = "<group>"; };
+		74C0935D1D2E45B900545C2B /* BoxManCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxManCell.swift; sourceTree = "<group>"; };
+		74C0935F1D2E45C400545C2B /* BoxManController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxManController.swift; sourceTree = "<group>"; };
 		9B3F0F0C6A9280FBF0ACA90F /* Pods_straw.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_straw.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -117,6 +123,7 @@
 		74C0934A1D2E394B00545C2B /* model */ = {
 			isa = PBXGroup;
 			children = (
+				74C0935B1D2E40EB00545C2B /* DB.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -124,6 +131,8 @@
 		74C0934B1D2E395000545C2B /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				74C0935D1D2E45B900545C2B /* BoxManCell.swift */,
+				74C0935F1D2E45C400545C2B /* BoxManController.swift */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -274,8 +283,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74C0935E1D2E45B900545C2B /* BoxManCell.swift in Sources */,
 				74C093381D2E388F00545C2B /* ViewController.swift in Sources */,
 				74C093361D2E388F00545C2B /* AppDelegate.swift in Sources */,
+				74C093601D2E45C400545C2B /* BoxManController.swift in Sources */,
+				74C0935C1D2E40EB00545C2B /* DB.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
