@@ -14,6 +14,7 @@ class WorkerController: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBOutlet weak var dialog: UIView!
     @IBOutlet weak var txtWorkerName: UITextField!
     @IBOutlet weak var btnOK: UIButton!
+    @IBOutlet weak var pickerContractor: UIPickerView!
     
     // MARK: Model
     var lastIndex = NSIndexPath()
@@ -38,22 +39,71 @@ class WorkerController: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func showDialog() {
+        btnOK.setTitle("OK", forState: .Normal)
+        tblWorkers.allowsSelection = false
         animateBoxSelection(dialog, from: 0, to: 1)
     }
     
     func hideDialog() {
+        tblWorkers.allowsSelection = true
         animateBoxSelection(dialog, from: 1, to: 0)
     }
+    
+    func getDataForDialog(){
+        let worker = workers[lastIndex.section][lastIndex.row]
+        txtWorkerName.text = worker.WorkerName
+        let index = findIndexOfWorkerContractor(worker.ContractorID)
+        pickerContractor.selectRow(index, inComponent: 0, animated: true)
+    
+    }
 
+    func findIndexOfWorkerContractor(workerid: Int64)->Int{
+        for i in 0..<contractors.count
+        {
+            if contractors[i].ContractorID == workerid{
+                return i
+            }
+        }
+        
+        return 0
+    }
+    
+    
     @IBAction func btnAdd_Click(sender: UIButton) {
+        let name = txtWorkerName.text!
+        let index = pickerContractor.selectedRowInComponent(0)
+        let contractorid = contractors[index].ContractorID
+        
+        let worker = Worker(id: -1, name: name, cid: contractorid)
+        
+        // DB update
+        Worker.Insert(worker)
+        
+        // GUI update - Trường hợp phải move cell mệt quá nên nạp lại từ csdl cho chắc
+        let data = Worker.GetWorkersGroupByContractor()
+        contractors = data.Contractors
+        workers = data.Workers
+        tblWorkers.reloadData()
         
         hideDialog()
+        dirty = false
     }
     
     @IBAction func btnUpdate_Click(sender: UIButton) {
         if dirty {
+            let worker = workers[lastIndex.section][lastIndex.row]
+            let name = txtWorkerName.text!
+            let index = pickerContractor.selectedRowInComponent(0)
+            let contractorid = contractors[index].ContractorID
             
+            // DB update
+            Worker.Update(worker.Workerid, name: name, cid: contractorid)
             
+            // GUI update - Trường hợp phải move cell mệt quá nên nạp lại từ csdl cho chắc
+            let data = Worker.GetWorkersGroupByContractor()
+            contractors = data.Contractors
+            workers = data.Workers
+            tblWorkers.reloadData()
             
             dirty = false
         }
@@ -62,6 +112,17 @@ class WorkerController: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     @IBAction func btnDelete_Click(sender: UIButton) {
+        let worker = workers[lastIndex.section][lastIndex.row]
+        
+        // DB update
+        Worker.Delete(worker.Workerid)
+        
+        // model update
+        workers[lastIndex.section].removeAtIndex(lastIndex.row)
+        
+        // UI update
+        tblWorkers.reloadData()
+        
         hideDialog()
     }
     
@@ -108,6 +169,8 @@ class WorkerController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         lastIndex = indexPath
+        
+        getDataForDialog()
         showDialog()    
     }
     
@@ -117,11 +180,11 @@ class WorkerController: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 1
+        return contractors.count
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return "A"
+        return contractors[row].ContractorName
     }
 
 }

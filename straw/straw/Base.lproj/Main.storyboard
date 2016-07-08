@@ -684,6 +684,7 @@
                     <connections>
                         <outlet property="btnOK" destination="44L-Dx-aYX" id="cMj-un-pzr"/>
                         <outlet property="dialog" destination="6LF-hi-4QW" id="Fft-hZ-iGJ"/>
+                        <outlet property="pickerContractor" destination="rTZ-0B-R4n" id="Rcz-CB-diG"/>
                         <outlet property="tblWorkers" destination="nHW-D2-keO" id="Kn4-Om-dzd"/>
                         <outlet property="txtWorkerName" destination="66M-i7-pok" id="cYN-Fr-3cs"/>
                     </connections>

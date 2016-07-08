@@ -42,6 +42,7 @@ class ContractorController: UIViewController, UITableViewDelegate, UITableViewDa
         contractors += [contractor]
         tblContractors.reloadData()
         hideBoxSelection()
+        dirty = false
     }
     
     func setupbox(){
@@ -61,6 +62,7 @@ class ContractorController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func showBoxSelection() {
+        btnOK.setTitle("OK", forState: .Normal)
         animateBoxSelection(0, to: 1)
     }
     
