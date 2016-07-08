@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		743497F71D2F5EBA0093D237 /* StatisticsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743497F61D2F5EBA0093D237 /* StatisticsController.swift */; };
 		743497F91D2F61E60093D237 /* StatisticsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743497F81D2F61E60093D237 /* StatisticsCell.swift */; };
+		743497FB1D2F8CE60093D237 /* ContractorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743497FA1D2F8CE60093D237 /* ContractorController.swift */; };
 		74C093361D2E388F00545C2B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C093351D2E388F00545C2B /* AppDelegate.swift */; };
 		74C093381D2E388F00545C2B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C093371D2E388F00545C2B /* ViewController.swift */; };
 		74C0933B1D2E388F00545C2B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74C093391D2E388F00545C2B /* Main.storyboard */; };
@@ -37,6 +38,7 @@
 		663801EBB907AAC90E3A6D87 /* Pods-straw.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-straw.debug.xcconfig"; path = "Pods/Target Support Files/Pods-straw/Pods-straw.debug.xcconfig"; sourceTree = "<group>"; };
 		743497F61D2F5EBA0093D237 /* StatisticsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsController.swift; sourceTree = "<group>"; };
 		743497F81D2F61E60093D237 /* StatisticsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsCell.swift; sourceTree = "<group>"; };
+		743497FA1D2F8CE60093D237 /* ContractorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractorController.swift; sourceTree = "<group>"; };
 		74C093321D2E388F00545C2B /* straw.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = straw.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74C093351D2E388F00545C2B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		74C093371D2E388F00545C2B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				74C0935F1D2E45C400545C2B /* BoxManController.swift */,
 				743497F61D2F5EBA0093D237 /* StatisticsController.swift */,
 				743497F81D2F61E60093D237 /* StatisticsCell.swift */,
+				743497FA1D2F8CE60093D237 /* ContractorController.swift */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				743497FB1D2F8CE60093D237 /* ContractorController.swift in Sources */,
 				74F9DD811D2E89B3008B7A68 /* MessageBox.swift in Sources */,
 				74C0935E1D2E45B900545C2B /* BoxManCell.swift in Sources */,
 				74C093381D2E388F00545C2B /* ViewController.swift in Sources */,
