@@ -37,6 +37,41 @@ class BoxManController : UIViewController, UITableViewDelegate, UITableViewDataS
         workers = data.Workers
     }
     
+    // MARK: Filter
+    
+    @IBAction func txtFilterName_TextChanged(sender: UITextField) {
+        let data = DB.GetWorkersGroupByContractor()
+        let originContractors = data.Contractors
+        let originWorkers = data.Workers
+        
+        if txtFilterName.text?.characters.count != 0 {
+            contractors = [Contractor]()
+            workers = [[Worker]]()
+            let pattern = txtFilterName.text!
+            
+            for i in 0..<originContractors.count {
+                var list = [Worker]()
+                
+                for j in 0..<originWorkers[i].count{
+                    if originWorkers[i][j].WorkerName.containsString(pattern){
+                        list += [originWorkers[i][j]]
+                    }
+                }
+                
+                if list.count > 0 {
+                    workers += [list]
+                    contractors += [originContractors[i]]
+                }
+            }
+        } else {
+            let data = DB.GetWorkersGroupByContractor()
+            contractors = data.Contractors
+            workers = data.Workers
+        }
+        
+        tblWorkers.reloadData()
+    }
+    
     // MARK: Box selection
     @IBAction func btnTake_Click(sender: UIButton) {
         if txtBoxNo.text?.characters.count == 0{
