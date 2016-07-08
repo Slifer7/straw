@@ -14,12 +14,12 @@ class StatisticsController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var lblCondition: UILabel!
     
     // MARK: model
+    var choice = ""
     var fromDay = -1
     var fromMonth = -1
     var fromYear = -1
     var toDay = -1
-    var toMonth = -1
-    var toYear = -1
+
     var contractors = [Contractor]()
     var workers = [[Worker]]()
     
@@ -27,15 +27,28 @@ class StatisticsController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let data = DB.DoStatistics(fromDay, frommonth: fromMonth, fromyear: fromYear, today: toDay, tomonth: toMonth, toyear: toYear)
-        contractors = data.Contractors
-        workers = data.Workers
-        
-        if fromDay == toDay && fromMonth == toMonth && fromYear == toYear {
+        if choice == "today" {
             lblCondition.text = "Statistics for today, \(fromDay)/\(fromMonth)/\(fromYear)"
-//        } else if fromDay == toDay && fromMonth == toMonth {
-//            lblCondition.text = "Statistics for year \(fromYear)"
-        }
+            let data = DB.DoStatistics(fromDay, frommonth: fromMonth, fromyear: fromYear, today: toDay)
+            contractors = data.Contractors
+            workers = data.Workers
+        } else if choice == "week"{
+            lblCondition.text = "Statistics for week from \(fromDay) to \(toDay) of \(fromMonth)/\(fromYear)"
+            let data = DB.DoStatistics(fromDay, frommonth: fromMonth, fromyear: fromYear, today: toDay)
+            contractors = data.Contractors
+            workers = data.Workers
+            
+        } else if choice == "month"{
+            lblCondition.text = "Statistics for month \(fromMonth)/\(fromYear)"
+            let data = DB.DoStatistics(fromMonth, fromyear: fromYear)
+            contractors = data.Contractors
+            workers = data.Workers
+        } else if choice == "year"{
+            lblCondition.text = "Statistics for year \(fromYear)"
+            let data = DB.DoStatistics(fromYear)
+            contractors = data.Contractors
+            workers = data.Workers
+        }        
     }
     
     // MARK: Table view

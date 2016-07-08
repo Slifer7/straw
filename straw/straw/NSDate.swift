@@ -59,6 +59,15 @@ extension NSDate
         return second
     }
     
+    func WeekDay() -> Int{
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components(.Weekday, fromDate: self)
+        let weekday = components.weekday
+        
+        return weekday
+
+    }
+    
     func ToShortTimeString() -> String
     {
         let formatter = NSDateFormatter()
@@ -89,5 +98,4 @@ class CurrentDate {
         
         return "\(hour):\(minute):\(second)"
     }
-    
 }

@@ -334,26 +334,65 @@ class DB {
         return Int(count)
     }
     
-    // Đếm coi nhân viên đã làm xong bao nhiêu hộp của từ ngày đến ngày
-    static func GetBoxCount(workerid: Int, fromday: Int, frommonth: Int, fromyear: Int, today: Int, tomonth: Int, toyear: Int) ->Int{
+    // Thống kê theo ngày - Đếm coi nhân viên đã làm xong bao nhiêu hộp của từ ngày đến ngày
+    static func GetBoxCount(workerid: Int, fromday: Int, frommonth: Int, fromyear: Int, today: Int) ->Int{
         self.CreateDbIfNeeded()
         let db = GetDB()
         
-        let count = try! db.scalar("SELECT count(*) FROM taskresult where workerid=\(workerid) and day>=\(fromday) and month>=\(frommonth) and year>=\(fromyear) and day<=\(today) and month<=\(tomonth) and year<=\(toyear)" ) as! Int64
+        let count = try! db.scalar("SELECT count(*) FROM taskresult where workerid=\(workerid) and day>=\(fromday) and month=\(frommonth) and year=\(fromyear) and day<=\(today)" ) as! Int64
         
         return Int(count)
     }
     
-    static func GetBoxCount(type: String, workerid: Int, fromday: Int, frommonth: Int, fromyear: Int, today: Int, tomonth: Int, toyear: Int) ->Int{
+    static func GetBoxCount(type: String, workerid: Int, fromday: Int, frommonth: Int, fromyear: Int, today: Int) ->Int{
         self.CreateDbIfNeeded()
         let db = GetDB()
         
-        let count = try! db.scalar("SELECT count(*) FROM taskresult where workerid=\(workerid) and day>=\(fromday) and month>=\(frommonth) and year>=\(fromyear) and day<=\(today) and month<=\(tomonth) and year<=\(toyear) and boxtype='\(type)'" ) as! Int64
+        let count = try! db.scalar("SELECT count(*) FROM taskresult where workerid=\(workerid) and day>=\(fromday) and month=\(frommonth) and year=\(fromyear) and day<=\(today) and boxtype='\(type)'" ) as! Int64
         
         return Int(count)
     }
     
-    static func DoStatistics(fromday: Int, frommonth: Int, fromyear: Int, today: Int, tomonth: Int, toyear: Int) -> (Contractors: [Contractor], Workers: [[Worker]]){
+    // Thống kê theo tháng
+    static func GetBoxCount(workerid: Int, frommonth: Int, fromyear: Int) ->Int{
+        self.CreateDbIfNeeded()
+        let db = GetDB()
+        
+        let count = try! db.scalar("SELECT count(*) FROM taskresult where workerid=\(workerid) and month=\(frommonth) and year=\(fromyear)" ) as! Int64
+        
+        return Int(count)
+    }
+    
+    static func GetBoxCount(type:String, workerid: Int, frommonth: Int, fromyear: Int) ->Int{
+        self.CreateDbIfNeeded()
+        let db = GetDB()
+        
+        let count = try! db.scalar("SELECT count(*) FROM taskresult where workerid=\(workerid) and month=\(frommonth) and year=\(fromyear) and boxtype='\(type)'" ) as! Int64
+        
+        return Int(count)
+    }
+    
+    // Thống kê theo năm
+    static func GetBoxCount(workerid: Int, fromyear: Int) ->Int{
+        self.CreateDbIfNeeded()
+        let db = GetDB()
+        
+        let count = try! db.scalar("SELECT count(*) FROM taskresult where workerid=\(workerid) and year=\(fromyear)" ) as! Int64
+        
+        return Int(count)
+    }
+    
+    static func GetBoxCount(type:String, workerid: Int, fromyear: Int) ->Int{
+        self.CreateDbIfNeeded()
+        let db = GetDB()
+        
+        let count = try! db.scalar("SELECT count(*) FROM taskresult where workerid=\(workerid) and year=\(fromyear) and boxtype='\(type)'" ) as! Int64
+        
+        return Int(count)
+    }
+    
+    // Thực hiện thống kê toàn bộ
+    static func DoStatistics(fromday: Int, frommonth: Int, fromyear: Int, today: Int) -> (Contractors: [Contractor], Workers: [[Worker]]){
         let contractors = self.GetContractors()
         let db = GetDB()
         
@@ -370,12 +409,12 @@ class DB {
                 let worker = Worker(id: row[id], name: row[name], cid: contractor.ContractorID)
                 
                 // Dùng chung số hộp và tổng số hộp
-                worker.BoxNumber = self.GetBoxCount(Int(worker.Workerid), fromday: fromday, frommonth: frommonth, fromyear: fromyear, today: today, tomonth: tomonth, toyear: toyear)
-                let box250 = self.GetBoxCount("250g", workerid: Int(worker.Workerid), fromday: fromday, frommonth: frommonth, fromyear: fromyear, today: today, tomonth: tomonth, toyear: toyear)
-                let box500 = self.GetBoxCount("500g", workerid: Int(worker.Workerid), fromday: fromday, frommonth: frommonth, fromyear: fromyear, today: today, tomonth: tomonth, toyear: toyear)
-                let box1kg = self.GetBoxCount("1kg", workerid: Int(worker.Workerid), fromday: fromday, frommonth: frommonth, fromyear: fromyear, today: today, tomonth: tomonth, toyear: toyear)
+                worker.BoxNumber = self.GetBoxCount(Int(worker.Workerid), fromday: fromday, frommonth: frommonth, fromyear: fromyear, today: today)
+                let box250 = self.GetBoxCount("250g", workerid: Int(worker.Workerid), fromday: fromday, frommonth: frommonth, fromyear: fromyear, today: today)
+                let box500 = self.GetBoxCount("500g", workerid: Int(worker.Workerid), fromday: fromday, frommonth: frommonth, fromyear: fromyear, today: today)
+                let box1kg = self.GetBoxCount("1kg", workerid: Int(worker.Workerid), fromday: fromday, frommonth: frommonth, fromyear: fromyear, today: today)
                 
-                worker.BoxType = "250g: \(box250) || 500g: \(box500) || 1kg: \(box1kg)"
+                worker.BoxType = "     250g: \(box250)      ||      500g: \(box500)      ||      1kg: \(box1kg)"
                 
                 list += [worker]
             }
@@ -384,4 +423,69 @@ class DB {
         
         return (contractors, workers)
     }
+    
+    static func DoStatistics(frommonth: Int, fromyear: Int) -> (Contractors: [Contractor], Workers: [[Worker]]){
+        let contractors = self.GetContractors()
+        let db = GetDB()
+        
+        var workers = [[Worker]]()
+        for contractor in contractors {
+            var list = [Worker]()
+            
+            let table = Table("worker")
+            let id = Expression<Int64>("id")
+            let name = Expression<String>("name")
+            let contractorid = Expression<Int64>("contractorid")
+            
+            for row in try! db.prepare(table.select(id, name).filter(contractorid == contractor.ContractorID)) {
+                let worker = Worker(id: row[id], name: row[name], cid: contractor.ContractorID)
+                
+                // Dùng chung số hộp và tổng số hộp
+                worker.BoxNumber = self.GetBoxCount(Int(worker.Workerid), frommonth: frommonth, fromyear: fromyear)
+                let box250 = self.GetBoxCount("250g", workerid: Int(worker.Workerid), frommonth: frommonth, fromyear: fromyear)
+                let box500 = self.GetBoxCount("500g", workerid: Int(worker.Workerid), frommonth: frommonth, fromyear: fromyear)
+                let box1kg = self.GetBoxCount("1kg", workerid: Int(worker.Workerid),  frommonth: frommonth, fromyear: fromyear)
+                
+                worker.BoxType = "     250g: \(box250)      ||      500g: \(box500)      ||      1kg: \(box1kg)"
+                
+                list += [worker]
+            }
+            workers += [list]
+        }
+        
+        return (contractors, workers)
+    }
+
+    static func DoStatistics(fromyear: Int) -> (Contractors: [Contractor], Workers: [[Worker]]){
+        let contractors = self.GetContractors()
+        let db = GetDB()
+        
+        var workers = [[Worker]]()
+        for contractor in contractors {
+            var list = [Worker]()
+            
+            let table = Table("worker")
+            let id = Expression<Int64>("id")
+            let name = Expression<String>("name")
+            let contractorid = Expression<Int64>("contractorid")
+            
+            for row in try! db.prepare(table.select(id, name).filter(contractorid == contractor.ContractorID)) {
+                let worker = Worker(id: row[id], name: row[name], cid: contractor.ContractorID)
+                
+                // Dùng chung số hộp và tổng số hộp
+                worker.BoxNumber = self.GetBoxCount(Int(worker.Workerid), fromyear: fromyear)
+                let box250 = self.GetBoxCount("250g", workerid: Int(worker.Workerid), fromyear: fromyear)
+                let box500 = self.GetBoxCount("500g", workerid: Int(worker.Workerid), fromyear: fromyear)
+                let box1kg = self.GetBoxCount("1kg", workerid: Int(worker.Workerid),  fromyear: fromyear)
+                
+                worker.BoxType = "     250g: \(box250)      ||      500g: \(box500)      ||      1kg: \(box1kg)"
+                
+                list += [worker]
+            }
+            workers += [list]
+        }
+        
+        return (contractors, workers)
+    }
+
 }
