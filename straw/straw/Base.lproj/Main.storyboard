@@ -558,7 +558,7 @@
         <!--Workers management-->
         <scene sceneID="RIv-TO-wGN">
             <objects>
-                <viewController title="Workers management" id="3Gv-rs-tVv" sceneMemberID="viewController">
+                <viewController title="Workers management" automaticallyAdjustsScrollViewInsets="NO" id="3Gv-rs-tVv" customClass="WorkerController" customModule="straw" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="d7f-yh-BH2"/>
                         <viewControllerLayoutGuide type="bottom" id="BEL-jL-9oL"/>
@@ -566,8 +566,127 @@
                     <view key="view" contentMode="scaleToFill" id="Kpt-LS-fw1">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="62" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nHW-D2-keO">
+                                <rect key="frame" x="20" y="72" width="560" height="194"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="WorkerCellID" rowHeight="62" id="81h-sD-dpX" customClass="WorkerCell" customModule="straw" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="560" height="62"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="81h-sD-dpX" id="vgm-ko-5zP">
+                                            <rect key="frame" x="0.0" y="0.0" width="560" height="61"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="worker.png" translatesAutoresizingMaskIntoConstraints="NO" id="F4c-t0-cf4">
+                                                    <rect key="frame" x="15" y="8" width="42" height="43"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Worker name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vlh-j2-FyD">
+                                                    <rect key="frame" x="65" y="20" width="143" height="21"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="lblWorkerName" destination="vlh-j2-FyD" id="nZB-6h-eNo"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="3Gv-rs-tVv" id="dn6-Ml-pUj"/>
+                                    <outlet property="delegate" destination="3Gv-rs-tVv" id="Tgs-vf-c2w"/>
+                                </connections>
+                            </tableView>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6LF-hi-4QW">
+                                <rect key="frame" x="101" y="302" width="375" height="200"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Worker name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9JX-ge-7UL">
+                                        <rect key="frame" x="17" y="117" width="145" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Contractor:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IhD-1U-r4y">
+                                        <rect key="frame" x="17" y="71" width="145" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="66M-i7-pok">
+                                        <rect key="frame" x="154" y="114" width="208" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="txtContractorName_Changed:" destination="mLz-iT-9St" eventType="editingChanged" id="Y96-0A-2md"/>
+                                            <action selector="txtWorkerName_Changed:" destination="3Gv-rs-tVv" eventType="editingChanged" id="sC5-Hd-kaQ"/>
+                                        </connections>
+                                    </textField>
+                                    <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rTZ-0B-R4n">
+                                        <rect key="frame" x="145" y="36" width="193" height="92"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="3Gv-rs-tVv" id="Me5-bV-JeX"/>
+                                            <outlet property="delegate" destination="3Gv-rs-tVv" id="4gY-rg-nnw"/>
+                                        </connections>
+                                    </pickerView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B9S-zu-TxY">
+                                        <rect key="frame" x="263" y="162" width="54" height="30"/>
+                                        <state key="normal" title="Delete">
+                                            <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="btnDelete_Click:" destination="3Gv-rs-tVv" eventType="touchUpInside" id="0nN-UQ-BOG"/>
+                                            <action selector="btnDelete_Click:" destination="mLz-iT-9St" eventType="touchUpInside" id="f2J-k5-UZo"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Frm-Fu-jMA">
+                                        <rect key="frame" x="63" y="162" width="69" height="30"/>
+                                        <state key="normal" title="Add"/>
+                                        <connections>
+                                            <action selector="btnAdd_Click:" destination="3Gv-rs-tVv" eventType="touchUpInside" id="8Xk-lR-7cT"/>
+                                            <action selector="btnInsert:" destination="mLz-iT-9St" eventType="touchUpInside" id="ZVA-i7-lkD"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Worker information" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E9j-uD-VUb">
+                                        <rect key="frame" x="90" y="8" width="202" height="28"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="44L-Dx-aYX">
+                                        <rect key="frame" x="155" y="162" width="73" height="30"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="OK"/>
+                                        <connections>
+                                            <action selector="btnUpdate_Click:" destination="mLz-iT-9St" eventType="touchUpInside" id="lnC-dk-EL1"/>
+                                            <action selector="btnUpdate_Click:" destination="3Gv-rs-tVv" eventType="touchUpInside" id="pbP-10-3Vl"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="hPC-1z-Z6W"/>
+                                    <constraint firstAttribute="width" constant="375" id="mzp-mk-kHj"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6LF-hi-4QW" firstAttribute="centerX" secondItem="Kpt-LS-fw1" secondAttribute="centerX" id="FgU-Za-RPG"/>
+                            <constraint firstItem="6LF-hi-4QW" firstAttribute="centerY" secondItem="Kpt-LS-fw1" secondAttribute="centerY" id="Iqj-7g-N8J"/>
+                            <constraint firstItem="nHW-D2-keO" firstAttribute="trailing" secondItem="Kpt-LS-fw1" secondAttribute="trailingMargin" id="NXe-yx-i1k"/>
+                            <constraint firstItem="nHW-D2-keO" firstAttribute="top" secondItem="d7f-yh-BH2" secondAttribute="bottom" constant="8" id="Vnu-zb-qwH"/>
+                            <constraint firstItem="BEL-jL-9oL" firstAttribute="top" secondItem="nHW-D2-keO" secondAttribute="bottom" id="t3v-WC-1Lp"/>
+                            <constraint firstItem="nHW-D2-keO" firstAttribute="leading" secondItem="Kpt-LS-fw1" secondAttribute="leadingMargin" id="y1G-WE-p9f"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="btnOK" destination="44L-Dx-aYX" id="cMj-un-pzr"/>
+                        <outlet property="dialog" destination="6LF-hi-4QW" id="Fft-hZ-iGJ"/>
+                        <outlet property="tblWorkers" destination="nHW-D2-keO" id="Kn4-Om-dzd"/>
+                        <outlet property="txtWorkerName" destination="66M-i7-pok" id="cYN-Fr-3cs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wLY-Of-taL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -636,7 +755,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7zw-Ef-TiT">
-                                <rect key="frame" x="115" y="344" width="375" height="162"/>
+                                <rect key="frame" x="113" y="344" width="375" height="162"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Contractor information" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Smg-n0-nDT">
                                         <rect key="frame" x="92" y="8" width="190" height="28"/>

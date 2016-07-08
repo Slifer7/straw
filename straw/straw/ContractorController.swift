@@ -16,6 +16,7 @@ class ContractorController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var boxInfo: UIView!
     @IBOutlet weak var btnOK: UIButton!
     
+    // MARK: Dialog
     @IBAction func btnUpdate_Click(sender: AnyObject) {
         if (dirty){
             let contractor = contractors[lastIndex.row]
@@ -72,9 +73,6 @@ class ContractorController: UIViewController, UITableViewDelegate, UITableViewDa
         dirty = true
         btnOK.setTitle("Update", forState: .Normal)
     }
-    
-    
-    
     
     // MARK: model
     var contractors = DB.GetContractors()

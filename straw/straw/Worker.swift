@@ -5,6 +5,7 @@
 //  Created by quang on 7/7/16.
 //  Copyright © 2016 slifer7. All rights reserved.
 //
+import SQLite
 
 class Worker{
     var Workerid: Int64 = -1
@@ -25,5 +26,33 @@ class Worker{
         Workerid = id
         WorkerName = name
         ContractorID = cid
+    }
+    
+    static func GetWorkersGroupByContractor() -> (Contractors: [Contractor], Workers: [[Worker]]){
+        let contractors = DB.GetContractors()
+        var workers = [[Worker]]()
+        for contractor in contractors {
+            let list = GetWorkerOfContractor(contractor.ContractorID)
+            workers += [list]
+        }
+        
+        return (contractors, workers)
+    }
+    
+    static func GetWorkerOfContractor(cid: Int64) -> [Worker]{
+        var list = [Worker]()
+        
+        let db = DB.GetDB()
+        let table = Table("worker")
+        let id = Expression<Int64>("id")
+        let name = Expression<String>("name")
+        let contractorid = Expression<Int64>("contractorid")
+        
+        for row in try! db.prepare(table.select(id, name).filter(contractorid == cid)) {
+            let worker = Worker(id: row[id], name: row[name], cid: cid)
+            list += [worker]
+        }
+        
+        return list
     }
 }

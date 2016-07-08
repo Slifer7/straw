@@ -71,7 +71,7 @@ class BoxManController : UIViewController, UITableViewDelegate, UITableViewDataS
         tblWorkers.reloadData()
         
         DB.SaveTaskDone(worker)
-        //worker.Status = "" // Ready to work
+        DB.DeleteAssignment(worker)
     }
 
     @IBAction func btnCancel_Click(sender: UIButton) {
@@ -171,7 +171,7 @@ class BoxManController : UIViewController, UITableViewDelegate, UITableViewDataS
         lastIndex = indexPath
         let worker = workers[indexPath.section][indexPath.row]
         
-        if worker.Status == "" {
+        if worker.Status == "" || worker.Status == "Finished" {
             DisableFinishButton()
             showBoxSelection()
         } else if worker.Status == "Taken" {
