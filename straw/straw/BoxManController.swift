@@ -19,9 +19,6 @@ class BoxManController : UIViewController, UITableViewDelegate, UITableViewDataS
     @IBOutlet weak var txtBoxNo: UITextField!
     @IBOutlet weak var pickerBoxes: UIPickerView!
     
-    
-    
-    
     // MARK: model section
     var lastIndex = NSIndexPath()
     var contractors = [Contractor]()
@@ -74,7 +71,7 @@ class BoxManController : UIViewController, UITableViewDelegate, UITableViewDataS
         tblWorkers.reloadData()
         
         DB.SaveTaskDone(worker)
-        worker.Status = "" // Ready to work
+        //worker.Status = "" // Ready to work
     }
 
     @IBAction func btnCancel_Click(sender: UIButton) {
@@ -87,7 +84,6 @@ class BoxManController : UIViewController, UITableViewDelegate, UITableViewDataS
         UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             self.dialogBoxSelection.alpha = to
         }, completion: nil)
-
     }
     
     func setupBoxSelection(){

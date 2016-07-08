@@ -222,7 +222,6 @@ class DB {
     }
     
     static func GetAssignment(wid: Int, day: Int, month: Int, year: Int) -> Worker{
-        self.CreateDbIfNeeded()
         let db = GetDB()
         
         let table = Table("boxassignment") // current assignment
@@ -257,7 +256,6 @@ class DB {
     // Lưu thông tin của worker xuống bảng phân công
     // Bảng này chỉ có giá trị của một ngày
     static func SaveWorkerAssignment(worker: Worker){
-        self.CreateDbIfNeeded()
         let db = GetDB()
         
         let table = Table("boxassignment")
@@ -276,10 +274,11 @@ class DB {
         // Kiểm tra tồn tại trong bảng phân công chưa
         let result = table.filter(workerid == worker.Workerid && day == Int64(worker.Day) && month == Int64(worker.Month) && year == Int64(worker.Year))
         if try! db.run(result.update(status <- worker.Status, boxType <- worker.BoxType, boxNo <- Int64(worker.BoxNumber), lastActionTime <- worker.LastActionTime)) > 0 {
-            
+            print("updated")
         } else { // Chưa tồn tại nên phải chèn
-            try! db.run(table.insert(workerid <- worker.Workerid, day <- Int64(worker.Day), month <- Int64(worker.Day), year <- Int64(worker.Year),
+            try! db.run(table.insert(workerid <- worker.Workerid, day <- Int64(worker.Day), month <- Int64(worker.Month), year <- Int64(worker.Year),
                 status <- worker.Status, boxType <- worker.BoxType, boxNo <- Int64(worker.BoxNumber), lastActionTime <- worker.LastActionTime))
+            print("Insert")
         }
     }
     
@@ -287,7 +286,6 @@ class DB {
     // Mỗi khi công nhân finish thì chèn vào bảng này
     // Có sẵn trường id tự động tăng rồi
     static func SaveTaskDone(worker: Worker){
-        self.CreateDbIfNeeded()
         let db = GetDB()
         
         let table = Table("taskresult")
@@ -309,7 +307,6 @@ class DB {
     }
     
     static func DeleteAssignment(worker: Worker){
-        self.CreateDbIfNeeded()
         let db = GetDB()
         
         let table = Table("boxassignment")
@@ -326,8 +323,7 @@ class DB {
     
     // Đếm coi nhân viên đã làm xong bao nhiêu hộp của một ngày
     static func GetBoxCountByDay(workerid: Int, day: Int, month: Int, year: Int) ->Int{
-        self.CreateDbIfNeeded()
-        let db = GetDB()      
+        let db = GetDB()
 
         let count = try! db.scalar("SELECT count(*) FROM taskresult where workerid=\(workerid) and day=\(day) and month=\(month) and year=\(year)" ) as! Int64
         
@@ -336,7 +332,6 @@ class DB {
     
     // Thống kê theo ngày - Đếm coi nhân viên đã làm xong bao nhiêu hộp của từ ngày đến ngày
     static func GetBoxCount(workerid: Int, fromday: Int, frommonth: Int, fromyear: Int, today: Int) ->Int{
-        self.CreateDbIfNeeded()
         let db = GetDB()
         
         let count = try! db.scalar("SELECT count(*) FROM taskresult where workerid=\(workerid) and day>=\(fromday) and month=\(frommonth) and year=\(fromyear) and day<=\(today)" ) as! Int64
@@ -345,7 +340,6 @@ class DB {
     }
     
     static func GetBoxCount(type: String, workerid: Int, fromday: Int, frommonth: Int, fromyear: Int, today: Int) ->Int{
-        self.CreateDbIfNeeded()
         let db = GetDB()
         
         let count = try! db.scalar("SELECT count(*) FROM taskresult where workerid=\(workerid) and day>=\(fromday) and month=\(frommonth) and year=\(fromyear) and day<=\(today) and boxtype='\(type)'" ) as! Int64
@@ -355,7 +349,6 @@ class DB {
     
     // Thống kê theo tháng
     static func GetBoxCount(workerid: Int, frommonth: Int, fromyear: Int) ->Int{
-        self.CreateDbIfNeeded()
         let db = GetDB()
         
         let count = try! db.scalar("SELECT count(*) FROM taskresult where workerid=\(workerid) and month=\(frommonth) and year=\(fromyear)" ) as! Int64
@@ -364,7 +357,6 @@ class DB {
     }
     
     static func GetBoxCount(type:String, workerid: Int, frommonth: Int, fromyear: Int) ->Int{
-        self.CreateDbIfNeeded()
         let db = GetDB()
         
         let count = try! db.scalar("SELECT count(*) FROM taskresult where workerid=\(workerid) and month=\(frommonth) and year=\(fromyear) and boxtype='\(type)'" ) as! Int64
@@ -374,7 +366,6 @@ class DB {
     
     // Thống kê theo năm
     static func GetBoxCount(workerid: Int, fromyear: Int) ->Int{
-        self.CreateDbIfNeeded()
         let db = GetDB()
         
         let count = try! db.scalar("SELECT count(*) FROM taskresult where workerid=\(workerid) and year=\(fromyear)" ) as! Int64
@@ -383,7 +374,6 @@ class DB {
     }
     
     static func GetBoxCount(type:String, workerid: Int, fromyear: Int) ->Int{
-        self.CreateDbIfNeeded()
         let db = GetDB()
         
         let count = try! db.scalar("SELECT count(*) FROM taskresult where workerid=\(workerid) and year=\(fromyear) and boxtype='\(type)'" ) as! Int64

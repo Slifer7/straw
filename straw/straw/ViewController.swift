@@ -174,7 +174,11 @@ class ViewController: UIViewController {
             self.showBoxSelection()
         }
         
-        MessageBox.Show(self, title: "Type of statistics", message: "Choose one", actions: [today, byWeek, byMonth, byYear])
+        let cancel = UIAlertAction(title: "Cancel", style: .Default){
+            UIAlertAction in
+        }
+        
+        MessageBox.Show(self, title: "Type of statistics", message: "Choose one", actions: [today, byWeek, byMonth, byYear, cancel])
     }
     
     // Pass data to another controller before segue
