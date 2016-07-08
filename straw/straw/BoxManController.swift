@@ -19,6 +19,9 @@ class BoxManController : UIViewController, UITableViewDelegate, UITableViewDataS
     @IBOutlet weak var txtBoxNo: UITextField!
     @IBOutlet weak var pickerBoxes: UIPickerView!
     
+    
+    
+    
     // MARK: model section
     var lastIndex = NSIndexPath()
     var contractors = [Contractor]()
@@ -34,7 +37,7 @@ class BoxManController : UIViewController, UITableViewDelegate, UITableViewDataS
         // Setup model
         let data = DB.GetWorkersGroupByContractor()
         contractors = data.Contractors
-        workers = data.Workers        
+        workers = data.Workers
     }
     
     // MARK: Box selection
@@ -70,7 +73,8 @@ class BoxManController : UIViewController, UITableViewDelegate, UITableViewDataS
         hideBoxSelection()
         tblWorkers.reloadData()
         
-        DB.SaveWorkerAssignment(worker)
+        DB.SaveTaskDone(worker)
+        worker.Status = "" // Ready to work
     }
 
     @IBAction func btnCancel_Click(sender: UIButton) {
@@ -146,7 +150,7 @@ class BoxManController : UIViewController, UITableViewDelegate, UITableViewDataS
             cell.txtBoxType.hidden = true
             cell.imgFinish.hidden = true
             cell.txtFinish.hidden = true
-            cell.txtLastActionTime.hidden = true
+            cell.txtLastActionTime.hidden = false
             cell.txtLastActionTime.text = ""
         } else if (worker.Status == "Taken"){
             cell.imgBoxTaken.hidden = false
@@ -179,6 +183,8 @@ class BoxManController : UIViewController, UITableViewDelegate, UITableViewDataS
             EnableFinishButton()
             showBoxSelection()
         }
+        
+        print(DB.GetBoxCountByDay(Int(worker.Workerid), day: CurrentDate.Day(), month: CurrentDate.Month(), year: CurrentDate.Year()))
     }
     
     func EnableFinishButton(){

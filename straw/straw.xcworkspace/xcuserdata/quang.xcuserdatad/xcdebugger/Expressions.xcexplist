@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "StatisticsController.tableView(UITableView, numberOfRowsInSection : Int) -&gt; Int:StatisticsController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "workers">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
