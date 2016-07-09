@@ -83,7 +83,7 @@
                                         <rect key="frame" x="12" y="12" width="96" height="96"/>
                                         <state key="normal" image="contractor.png"/>
                                         <connections>
-                                            <segue destination="mLz-iT-9St" kind="show" id="Gan-Ad-GGI"/>
+                                            <action selector="btnContractor_Tapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jOz-Vh-uIu"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="77p-18-gzz">
@@ -97,7 +97,7 @@
                                         <rect key="frame" x="186" y="20" width="80" height="80"/>
                                         <state key="normal" image="worker.png"/>
                                         <connections>
-                                            <segue destination="3Gv-rs-tVv" kind="show" id="mdg-Q9-132"/>
+                                            <action selector="btnWorkers_Tapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9nw-Bo-lkC"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -204,7 +204,7 @@
                         <outlet property="txtDay" destination="59i-Gd-4uu" id="97I-Ed-Qrx"/>
                         <outlet property="txtMonth" destination="GUj-fR-qZy" id="Wpk-gH-CVC"/>
                         <outlet property="txtYear" destination="Yai-30-oV6" id="mAP-YW-x4U"/>
-                        <segue destination="MdK-by-ZBN" kind="show" identifier="SegueStatistics" id="ceX-Fi-nsV"/>
+                        <segue destination="ZLv-zO-afN" kind="show" identifier="SegueShowPassword" id="kts-59-iDs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -307,7 +307,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wD3-Rz-9nw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1117" y="1129"/>
+            <point key="canvasLocation" x="1111" y="1833"/>
         </scene>
         <!--Box managment-->
         <scene sceneID="Dha-v7-5tE">
@@ -735,7 +735,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wLY-Of-taL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1805" y="1129"/>
+            <point key="canvasLocation" x="1792" y="1833"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aOt-Sz-0BG">
@@ -754,6 +754,144 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gYX-iN-khr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="403" y="429"/>
+        </scene>
+        <!--Password-->
+        <scene sceneID="1CQ-Bf-xdO">
+            <objects>
+                <viewController title="Password" id="ZLv-zO-afN" customClass="PasswordController" customModule="straw" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gqN-78-Vz3"/>
+                        <viewControllerLayoutGuide type="bottom" id="b8p-fw-JvM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="KMP-o3-2CJ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="716-2g-tPZ">
+                                <rect key="frame" x="160" y="72" width="281" height="173"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="key.png" translatesAutoresizingMaskIntoConstraints="NO" id="eAY-rZ-BGb">
+                                        <rect key="frame" x="28" y="71" width="35" height="36"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please enter password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AZh-ac-4ty">
+                                        <rect key="frame" x="20" y="20" width="241" height="26"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7bd-6c-jKR">
+                                        <rect key="frame" x="77" y="74" width="166" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wi7-HT-Gxa">
+                                        <rect key="frame" x="160" y="123" width="59" height="30"/>
+                                        <state key="normal" title="Change"/>
+                                        <connections>
+                                            <action selector="btnChagePassword_Tapped:" destination="ZLv-zO-afN" eventType="touchUpInside" id="pii-91-V0a"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sMK-f4-uLg">
+                                        <rect key="frame" x="77" y="123" width="46" height="30"/>
+                                        <state key="normal" title="OK"/>
+                                        <connections>
+                                            <action selector="btnOK_Tapped:" destination="ZLv-zO-afN" eventType="touchUpInside" id="TLa-LX-vRe"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="173" id="8lm-if-ecm"/>
+                                    <constraint firstAttribute="width" constant="281" id="knm-5N-5FA"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rCf-fZ-8qv">
+                                <rect key="frame" x="105" y="268" width="390" height="232"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Change password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YCb-yW-ZN9">
+                                        <rect key="frame" x="95" y="17" width="216" height="21"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Old password:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wra-cS-yyH">
+                                        <rect key="frame" x="16" y="63" width="119" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.64468270540237427" green="0.36637425422668457" blue="0.091923050582408905" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="New password:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U2b-Bq-dA7">
+                                        <rect key="frame" x="16" y="111" width="119" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.10465718060731888" green="0.54806989431381226" blue="0.090052597224712372" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Type again:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rou-a4-jVy">
+                                        <rect key="frame" x="16" y="149" width="119" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.095268674194812775" green="0.62979000806808472" blue="0.12278110533952713" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gM0-Lc-N2f">
+                                        <rect key="frame" x="155" y="60" width="164" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="miR-qv-wBa">
+                                        <rect key="frame" x="155" y="108" width="164" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ea6-hf-U6e">
+                                        <rect key="frame" x="155" y="146" width="164" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xXk-SJ-ZTe">
+                                        <rect key="frame" x="352" y="8" width="30" height="30"/>
+                                        <state key="normal" image="close.png"/>
+                                        <connections>
+                                            <action selector="btnClose_Tapped:" destination="ZLv-zO-afN" eventType="touchUpInside" id="9Gk-7X-7Wo"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Gq-eS-nnN">
+                                        <rect key="frame" x="162" y="194" width="67" height="30"/>
+                                        <state key="normal" title="Update"/>
+                                        <connections>
+                                            <action selector="btnUpdate_Tapped:" destination="ZLv-zO-afN" eventType="touchUpInside" id="8jD-jz-J4z"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="390" id="Ee4-99-e5I"/>
+                                    <constraint firstAttribute="height" constant="232" id="Ff4-hN-H9v"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="716-2g-tPZ" firstAttribute="centerX" secondItem="KMP-o3-2CJ" secondAttribute="centerX" id="139-rj-dOX"/>
+                            <constraint firstItem="716-2g-tPZ" firstAttribute="top" secondItem="gqN-78-Vz3" secondAttribute="bottom" constant="8" id="Ojg-3s-5O5"/>
+                            <constraint firstItem="rCf-fZ-8qv" firstAttribute="top" secondItem="716-2g-tPZ" secondAttribute="bottom" constant="23" id="YoM-Do-1Hs"/>
+                            <constraint firstItem="rCf-fZ-8qv" firstAttribute="centerX" secondItem="KMP-o3-2CJ" secondAttribute="centerX" id="lCv-EM-WT1"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="dialogChangePassword" destination="rCf-fZ-8qv" id="FLU-3Z-v1f"/>
+                        <outlet property="txtNewPassword" destination="miR-qv-wBa" id="H1P-FB-tn1"/>
+                        <outlet property="txtNewPasswordAgain" destination="Ea6-hf-U6e" id="3tt-59-gUY"/>
+                        <outlet property="txtOldPassword" destination="gM0-Lc-N2f" id="ZUg-Dk-jC0"/>
+                        <outlet property="txtPassword" destination="7bd-6c-jKR" id="RZw-0p-4cf"/>
+                        <outlet property="viewPassword" destination="716-2g-tPZ" id="ha8-TB-Udl"/>
+                        <segue destination="mLz-iT-9St" kind="show" identifier="SegueShowContractors" id="6dW-9B-RsX"/>
+                        <segue destination="MdK-by-ZBN" kind="show" identifier="SegueShowStatistics" id="aCS-Zi-6PJ"/>
+                        <segue destination="3Gv-rs-tVv" kind="show" identifier="SegueShowWorkers" id="qol-Os-R7e"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rIO-w0-00V" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1117" y="1146"/>
         </scene>
         <!--Contractors management-->
         <scene sceneID="iJx-6m-x4a">
@@ -916,7 +1054,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XFF-Ev-SDv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="403" y="1140"/>
+            <point key="canvasLocation" x="439" y="1833"/>
         </scene>
     </scenes>
     <resources>
@@ -926,6 +1064,7 @@
         <image name="contractor.png" width="96" height="96"/>
         <image name="emptybox.png" width="100" height="100"/>
         <image name="finish.png" width="96" height="96"/>
+        <image name="key.png" width="96" height="96"/>
         <image name="statistics.png" width="96" height="96"/>
         <image name="worker.png" width="96" height="96"/>
     </resources>

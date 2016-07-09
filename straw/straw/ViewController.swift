@@ -27,7 +27,6 @@ class ViewController: UIViewController {
     var fromMonth = -1
     var fromYear = -1
     var toDay = -1
-
     var choice = ""
     
     // MARK: Statistics condition
@@ -50,7 +49,7 @@ class ViewController: UIViewController {
 
                 
                 hideBoxSelection()
-                self.performSegueWithIdentifier("SegueStatistics", sender: self)
+                self.performSegueWithIdentifier("SegueShowPassword", sender: self)
             }
             
         } else if choice == "month"{
@@ -63,15 +62,16 @@ class ViewController: UIViewController {
                 fromYear = Int(txtYear.text!)!
                 
                 hideBoxSelection()
-                self.performSegueWithIdentifier("SegueStatistics", sender: self)
+                self.performSegueWithIdentifier("SegueShowPassword", sender: self)
             }
         } else if choice == "year" {
             if (txtYear.text?.characters.count == 0)
             {
                 MessageBox.Show(self, title: "Error", message: "Need to enter year!")
             } else {
+                fromYear = Int(txtYear.text!)!
                 hideBoxSelection()
-                self.performSegueWithIdentifier("SegueStatistics", sender: self)
+                self.performSegueWithIdentifier("SegueShowPassword", sender: self)
             }
         }
     }
@@ -112,9 +112,8 @@ class ViewController: UIViewController {
             self.toDay = self.fromDay
             self.fromMonth = CurrentDate.Month()
             self.fromYear = CurrentDate.Year()
-
             
-            self.performSegueWithIdentifier("SegueStatistics", sender: self)
+            self.performSegueWithIdentifier("SegueShowPassword", sender: self)
         }
         
         let byWeek = UIAlertAction(title: "By week", style: .Default){
@@ -148,6 +147,7 @@ class ViewController: UIViewController {
             self.txtDay.hidden = true
             self.lblDay.hidden = true
             self.txtMonth.hidden = false
+            self.lblMonth.hidden = false
             
             self.txtMonth.text = "\(CurrentDate.Month())"
             self.txtYear.text = "\(CurrentDate.Year())"
@@ -166,6 +166,7 @@ class ViewController: UIViewController {
             self.txtDay.text = ""
             self.txtDay.hidden = true
             self.lblDay.hidden = true
+            self.lblMonth.hidden = true
             self.txtMonth.hidden = true
             
             self.txtMonth.text = "\(CurrentDate.Month())"
@@ -183,9 +184,9 @@ class ViewController: UIViewController {
     
     // Pass data to another controller before segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let destination = segue.destinationViewController as? StatisticsController
+        let destination = segue.destinationViewController as? PasswordController
         
-        if segue.identifier == "SegueStatistics" {
+        if segue.identifier == "SegueShowPassword" {
             destination?.fromDay = fromDay
             destination?.fromMonth = fromMonth
             destination?.fromYear = fromYear
@@ -201,5 +202,15 @@ class ViewController: UIViewController {
         setupConditionBox()
     }
     
+    // MARK: Main view
+    @IBAction func btnContractor_Tapped(sender: UIButton) {
+        choice = "Worker"
+        self.performSegueWithIdentifier("SegueShowPassword", sender: self)
+    }
+    
+    @IBAction func btnWorkers_Tapped(sender: UIButton) {
+        self.performSegueWithIdentifier("SegueShowPassword", sender: self)
+        choice = "Contractor"
+    }
     
 }

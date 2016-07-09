@@ -14,6 +14,8 @@
 		743497FF1D2FB09C0093D237 /* WorkerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743497FE1D2FB09C0093D237 /* WorkerController.swift */; };
 		743498011D2FB0E50093D237 /* WorkerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743498001D2FB0E50093D237 /* WorkerCell.swift */; };
 		743498031D30BB540093D237 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 743498021D30BB540093D237 /* close.png */; };
+		743498051D30E4870093D237 /* PasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743498041D30E4870093D237 /* PasswordController.swift */; };
+		743498071D30E63A0093D237 /* key.png in Resources */ = {isa = PBXBuildFile; fileRef = 743498061D30E63A0093D237 /* key.png */; };
 		74C093361D2E388F00545C2B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C093351D2E388F00545C2B /* AppDelegate.swift */; };
 		74C093381D2E388F00545C2B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C093371D2E388F00545C2B /* ViewController.swift */; };
 		74C0933B1D2E388F00545C2B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74C093391D2E388F00545C2B /* Main.storyboard */; };
@@ -47,6 +49,8 @@
 		743497FE1D2FB09C0093D237 /* WorkerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkerController.swift; sourceTree = "<group>"; };
 		743498001D2FB0E50093D237 /* WorkerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkerCell.swift; sourceTree = "<group>"; };
 		743498021D30BB540093D237 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
+		743498041D30E4870093D237 /* PasswordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordController.swift; sourceTree = "<group>"; };
+		743498061D30E63A0093D237 /* key.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = key.png; sourceTree = "<group>"; };
 		74C093321D2E388F00545C2B /* straw.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = straw.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74C093351D2E388F00545C2B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		74C093371D2E388F00545C2B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -131,6 +135,7 @@
 		74C093491D2E394500545C2B /* images */ = {
 			isa = PBXGroup;
 			children = (
+				743498061D30E63A0093D237 /* key.png */,
 				743498021D30BB540093D237 /* close.png */,
 				74C0934D1D2E3A2B00545C2B /* berry.png */,
 				74C0934E1D2E3A2B00545C2B /* boxman.png */,
@@ -165,6 +170,7 @@
 				743497FC1D2F90790093D237 /* ContractorCell.swift */,
 				743497FE1D2FB09C0093D237 /* WorkerController.swift */,
 				743498001D2FB0E50093D237 /* WorkerCell.swift */,
+				743498041D30E4870093D237 /* PasswordController.swift */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -255,6 +261,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				743498071D30E63A0093D237 /* key.png in Resources */,
 				74C093401D2E388F00545C2B /* LaunchScreen.storyboard in Resources */,
 				74C093561D2E3A2B00545C2B /* contractor.png in Resources */,
 				74C0933D1D2E388F00545C2B /* Assets.xcassets in Resources */,
@@ -335,6 +342,7 @@
 				74C093601D2E45C400545C2B /* BoxManController.swift in Sources */,
 				743498011D2FB0E50093D237 /* WorkerCell.swift in Sources */,
 				74C093621D2E535C00545C2B /* Contractor.swift in Sources */,
+				743498051D30E4870093D237 /* PasswordController.swift in Sources */,
 				743497FD1D2F90790093D237 /* ContractorCell.swift in Sources */,
 				74C0935C1D2E40EB00545C2B /* DB.swift in Sources */,
 				743497FF1D2FB09C0093D237 /* WorkerController.swift in Sources */,

@@ -110,19 +110,31 @@ class DB {
     
     // Kiểm tra chương trình đã chạy lên lần đầu chưa, nếu chưa thì tạo csdl và khởi tạo dữ liệu ban đầu
     static func CheckInit() -> Bool{
-        var list = [(ID: Int, Inited: Bool, Pass: String)]()
+        let list = GetConfig()
         
+        return list.count > 0
+    }
+    
+    static func GetConfig() -> [(Inited: Bool, Pass: String)] {
+        let db = GetDB()
         let table = Table("config")
-        let id = Expression<Int64>("id")
         let inited = Expression<Bool>("inited")
         let pass = Expression<String>("pass")
         
-        let db = GetDB()
+        var list = [(Inited: Bool, Pass: String)] ()
         for row in try! db.prepare(table) {
-            list += [ (Int(row[id]), row[inited], row[pass]) ]
+            list += [( Inited: row[inited], Pass: row[pass] )]
         }
         
-        return list.count > 0
+        return list
+    }
+    
+    static func UpdateConfig(newPass: String){
+        let db = GetDB()
+        let table = Table("config")
+        let pass = Expression<String>("pass")
+        
+        try! db.run(table.update(pass <- newPass))
     }
     
     // Khởi tạo một số giá trị ban đầu, một số là code cứng
