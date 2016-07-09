@@ -58,6 +58,57 @@
                                     <segue destination="58j-zH-CiK" kind="show" id="fi9-qW-hfZ"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BiL-tp-a6W">
+                                <rect key="frame" x="74" y="195" width="453" height="149"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Statistics" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gei-bm-eVl">
+                                        <rect key="frame" x="353" y="108" width="80" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Contractors" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5uj-rW-dCd">
+                                        <rect key="frame" x="20" y="108" width="102" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Workers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lxs-fw-331">
+                                        <rect key="frame" x="198" y="108" width="71" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oto-BQ-GzI">
+                                        <rect key="frame" x="12" y="12" width="96" height="96"/>
+                                        <state key="normal" image="contractor.png"/>
+                                        <connections>
+                                            <segue destination="mLz-iT-9St" kind="show" id="Gan-Ad-GGI"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="77p-18-gzz">
+                                        <rect key="frame" x="346" y="20" width="80" height="80"/>
+                                        <state key="normal" image="statistics.png"/>
+                                        <connections>
+                                            <action selector="btnStatistics_Click:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lfN-UT-UWd"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oNI-r8-jsm">
+                                        <rect key="frame" x="186" y="20" width="80" height="80"/>
+                                        <state key="normal" image="worker.png"/>
+                                        <connections>
+                                            <segue destination="3Gv-rs-tVv" kind="show" id="mdg-Q9-132"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="453" id="OE7-MO-kiy"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="453" id="Zq1-lo-3zK"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="149" id="lZn-G9-QCZ"/>
+                                    <constraint firstAttribute="height" constant="149" id="q24-uU-Hcq"/>
+                                </constraints>
+                            </view>
                             <view alpha="0.0" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wkX-7D-tVt">
                                 <rect key="frame" x="86" y="370" width="385" height="149"/>
                                 <subviews>
@@ -125,57 +176,6 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="385" id="r1y-bv-sTD"/>
                                     <constraint firstAttribute="height" constant="149" id="tMD-NI-dOu"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BiL-tp-a6W">
-                                <rect key="frame" x="74" y="195" width="453" height="149"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Statistics" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gei-bm-eVl">
-                                        <rect key="frame" x="353" y="108" width="80" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Contractors" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5uj-rW-dCd">
-                                        <rect key="frame" x="20" y="108" width="102" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Workers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lxs-fw-331">
-                                        <rect key="frame" x="198" y="108" width="71" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oto-BQ-GzI">
-                                        <rect key="frame" x="12" y="12" width="96" height="96"/>
-                                        <state key="normal" image="contractor.png"/>
-                                        <connections>
-                                            <segue destination="mLz-iT-9St" kind="show" id="Gan-Ad-GGI"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="77p-18-gzz">
-                                        <rect key="frame" x="346" y="20" width="80" height="80"/>
-                                        <state key="normal" image="statistics.png"/>
-                                        <connections>
-                                            <action selector="btnStatistics_Click:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lfN-UT-UWd"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oNI-r8-jsm">
-                                        <rect key="frame" x="186" y="20" width="80" height="80"/>
-                                        <state key="normal" image="worker.png"/>
-                                        <connections>
-                                            <segue destination="3Gv-rs-tVv" kind="show" id="mdg-Q9-132"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="453" id="OE7-MO-kiy"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="453" id="Zq1-lo-3zK"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="149" id="lZn-G9-QCZ"/>
-                                    <constraint firstAttribute="height" constant="149" id="q24-uU-Hcq"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -829,12 +829,6 @@
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7zw-Ef-TiT">
                                 <rect key="frame" x="113" y="344" width="375" height="190"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Contractor information" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Smg-n0-nDT">
-                                        <rect key="frame" x="92" y="8" width="190" height="28"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Contractor name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7TO-ed-LQM">
                                         <rect key="frame" x="18" y="70" width="145" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -887,6 +881,12 @@
                                             <action selector="btnDelete_Click:" destination="mLz-iT-9St" eventType="touchUpInside" id="iNy-6L-YuL"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Contractor information" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Smg-n0-nDT">
+                                        <rect key="frame" x="69" y="8" width="237" height="28"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>

@@ -164,8 +164,14 @@ class WorkerController: UIViewController, UITableViewDelegate, UITableViewDataSo
         let data = Worker.GetWorkersGroupByContractor()
         contractors = data.Contractors
         workers = data.Workers
+        
+        let addButton = UIBarButtonItem(title: "Add", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(addButton_Tapped))
+        self.navigationItem.setRightBarButtonItems([addButton], animated: true)
     }
     
+    func addButton_Tapped(){
+        print("add")
+    }    
     
     // MARK: Table view
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {

@@ -95,8 +95,14 @@ class ContractorController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         
         setupbox()
+        
+        let addButton = UIBarButtonItem(title: "Add", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(addButton_Tapped))
+        self.navigationItem.setRightBarButtonItems([addButton], animated: true)
     }
     
+    func addButton_Tapped(){
+        print("add")
+    }
     
     // MARK: Table view
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -133,6 +139,7 @@ class ContractorController: UIViewController, UITableViewDelegate, UITableViewDa
         
         let contractor = contractors[indexPath.row]
         txtContractorName.text = contractor.ContractorName
+        txtPhoneNumber.text = contractor.PhoneNumber
         showBoxSelection()
     }
     
