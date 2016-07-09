@@ -49,15 +49,17 @@ class DB {
         
         let contractor = Table("contractor")
         let name = Expression<String>("name")
+        let phoneno = Expression<String?>("phonenumber")
         
         try! db.run(contractor.create(ifNotExists: true){ t in
             t.column(id, primaryKey: true)
             t.column(name)
+            t.column(phoneno)
             })
         
         let worker = Table("worker")
         let contractorid = Expression<Int64>("contractorid")
-        let phoneno = Expression<String?>("phonenumber")
+        
             
         try! db.run(worker.create(ifNotExists: true){ t in
             t.column(id, primaryKey: true)
@@ -175,9 +177,10 @@ class DB {
         let table = Table("contractor")
         let id = Expression<Int64>("id")
         let name = Expression<String>("name")
+        let phoneno = Expression<String?>("phonenumber")
         
         for row in try! db.prepare(table) {
-            list += [ Contractor(id: row[id], name: row[name]) ]
+            list += [ Contractor(id: row[id], name: row[name], phoneno: row[phoneno]) ]
         }
         
         return list

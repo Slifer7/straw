@@ -10,18 +10,20 @@ import UIKit
 
 class ContractorController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     // MARK: UI elements
-    
     @IBOutlet weak var tblContractors: UITableView!
     @IBOutlet weak var txtContractorName: UITextField!
     @IBOutlet weak var boxInfo: UIView!
     @IBOutlet weak var btnOK: UIButton!
     @IBOutlet weak var btnDelete: UIButton!
+    @IBOutlet weak var txtPhoneNumber: UITextField!
     
     // MARK: Dialog
     @IBAction func btnUpdate_Click(sender: AnyObject) {
         if (dirty){
             let contractor = contractors[lastIndex.row]
             contractor.ContractorName = txtContractorName.text!
+            contractor.PhoneNumber = txtPhoneNumber.text!
+            
             Contractor.Update(contractor)
             tblContractors.reloadData()
             dirty = false
@@ -38,7 +40,7 @@ class ContractorController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     @IBAction func btnInsert(sender: UIButton) {
-        let contractor = Contractor(id: -1, name: txtContractorName.text!)
+        let contractor = Contractor(id: -1, name: txtContractorName.text!, phoneno: txtPhoneNumber.text)
         Contractor.Insert(contractor)
         contractors += [contractor]
         tblContractors.reloadData()
@@ -114,7 +116,15 @@ class ContractorController: UIViewController, UITableViewDelegate, UITableViewDa
         let cell = tblContractors.dequeueReusableCellWithIdentifier("ContractorCellID", forIndexPath: indexPath) as! ContractorCell
         let contractor = contractors[indexPath.row]
         cell.lblContractor.text = contractor.ContractorName
-        
+        if contractor.PhoneNumber != nil {
+            if contractor.PhoneNumber!.characters.count > 0{
+                cell.lblInfo.text = "Phone number: \(contractor.PhoneNumber!)"
+            } else {
+                cell.lblInfo.text = ""
+            }
+        } else {
+            cell.lblInfo.text = ""
+        }
         return cell
     }
     

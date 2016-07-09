@@ -9,6 +9,6 @@
 import UIKit
 
 class ContractorCell: UITableViewCell{
-    
     @IBOutlet weak var lblContractor: UILabel!
+    @IBOutlet weak var lblInfo: UILabel!
 }

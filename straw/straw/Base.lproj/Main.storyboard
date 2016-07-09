@@ -654,22 +654,6 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Phone number:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T23-iq-eq2">
-                                        <rect key="frame" x="15" y="170" width="145" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gUT-yS-RY6">
-                                        <rect key="frame" x="152" y="167" width="208" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <connections>
-                                            <action selector="txtContractorName_Changed:" destination="mLz-iT-9St" eventType="editingChanged" id="zvC-dP-1Xi"/>
-                                            <action selector="txtPhoneNumber_Changed:" destination="3Gv-rs-tVv" eventType="editingChanged" id="xZO-t6-bxf"/>
-                                            <action selector="txtWorkerName_Changed:" destination="3Gv-rs-tVv" eventType="editingChanged" id="Ahj-fn-lb8"/>
-                                        </connections>
-                                    </textField>
                                     <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rTZ-0B-R4n">
                                         <rect key="frame" x="138" y="44" width="229" height="92"/>
                                         <connections>
@@ -678,22 +662,7 @@
                                         </connections>
                                     </pickerView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Contractor:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IhD-1U-r4y">
-                                        <rect key="frame" x="15" y="79" width="145" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="66M-i7-pok">
-                                        <rect key="frame" x="152" y="120" width="208" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <connections>
-                                            <action selector="txtContractorName_Changed:" destination="mLz-iT-9St" eventType="editingChanged" id="Y96-0A-2md"/>
-                                            <action selector="txtWorkerName_Changed:" destination="3Gv-rs-tVv" eventType="editingChanged" id="sC5-Hd-kaQ"/>
-                                        </connections>
-                                    </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Worker name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9JX-ge-7UL">
-                                        <rect key="frame" x="15" y="124" width="145" height="21"/>
+                                        <rect key="frame" x="15" y="79" width="105" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
@@ -705,6 +674,37 @@
                                             <action selector="btnClose_Click:" destination="3Gv-rs-tVv" eventType="touchUpInside" id="3ac-jg-LYg"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Phone number:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T23-iq-eq2">
+                                        <rect key="frame" x="15" y="182" width="129" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gUT-yS-RY6">
+                                        <rect key="frame" x="152" y="179" width="208" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="txtContractorName_Changed:" destination="mLz-iT-9St" eventType="editingChanged" id="zvC-dP-1Xi"/>
+                                            <action selector="txtPhoneNumber_Changed:" destination="3Gv-rs-tVv" eventType="editingChanged" id="xZO-t6-bxf"/>
+                                            <action selector="txtWorkerName_Changed:" destination="3Gv-rs-tVv" eventType="editingChanged" id="Ahj-fn-lb8"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="66M-i7-pok">
+                                        <rect key="frame" x="152" y="132" width="208" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="txtContractorName_Changed:" destination="mLz-iT-9St" eventType="editingChanged" id="Y96-0A-2md"/>
+                                            <action selector="txtWorkerName_Changed:" destination="3Gv-rs-tVv" eventType="editingChanged" id="sC5-Hd-kaQ"/>
+                                        </connections>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Worker name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9JX-ge-7UL">
+                                        <rect key="frame" x="15" y="136" width="129" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -778,19 +778,46 @@
                                             <rect key="frame" x="0.0" y="0.0" width="560" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="contractor.png" translatesAutoresizingMaskIntoConstraints="NO" id="P6u-0t-ecs">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="contractor.png" translatesAutoresizingMaskIntoConstraints="NO" id="P6u-0t-ecs">
                                                     <rect key="frame" x="8" y="5" width="40" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="40" id="4G1-ab-uQp"/>
+                                                        <constraint firstAttribute="height" constant="40" id="Jat-G4-7o1"/>
+                                                    </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Contractor name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nuO-9S-5eG">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contractor name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nuO-9S-5eG">
                                                     <rect key="frame" x="56" y="14" width="151" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="151" id="SPI-sl-lB6"/>
+                                                        <constraint firstAttribute="height" constant="21" id="mQT-Hf-Zn1"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XXY-RN-t0o">
+                                                    <rect key="frame" x="215" y="14" width="227" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="fjT-ye-LnI"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="XXY-RN-t0o" firstAttribute="leading" secondItem="nuO-9S-5eG" secondAttribute="trailing" constant="8" id="1uC-f5-Tdp"/>
+                                                <constraint firstItem="nuO-9S-5eG" firstAttribute="centerY" secondItem="fOc-ne-BaW" secondAttribute="centerY" id="D7G-9q-RRw"/>
+                                                <constraint firstItem="P6u-0t-ecs" firstAttribute="leading" secondItem="fOc-ne-BaW" secondAttribute="leadingMargin" id="D9Q-SH-XgR"/>
+                                                <constraint firstItem="nuO-9S-5eG" firstAttribute="leading" secondItem="P6u-0t-ecs" secondAttribute="trailing" constant="8" id="OzI-4A-YUe"/>
+                                                <constraint firstItem="nuO-9S-5eG" firstAttribute="top" secondItem="fOc-ne-BaW" secondAttribute="topMargin" constant="6" id="VaY-Hx-n2w"/>
+                                                <constraint firstItem="P6u-0t-ecs" firstAttribute="top" secondItem="fOc-ne-BaW" secondAttribute="topMargin" constant="-3" id="nUf-GG-4eP"/>
+                                                <constraint firstItem="XXY-RN-t0o" firstAttribute="top" secondItem="fOc-ne-BaW" secondAttribute="topMargin" constant="6" id="sT2-4u-Yzh"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="lblContractor" destination="nuO-9S-5eG" id="p92-Rf-fi4"/>
+                                            <outlet property="lblInfo" destination="XXY-RN-t0o" id="dlN-4Q-kCd"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -800,7 +827,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7zw-Ef-TiT">
-                                <rect key="frame" x="113" y="344" width="375" height="162"/>
+                                <rect key="frame" x="113" y="344" width="375" height="190"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Contractor information" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Smg-n0-nDT">
                                         <rect key="frame" x="92" y="8" width="190" height="28"/>
@@ -808,37 +835,20 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R5j-uQ-DyY">
-                                        <rect key="frame" x="277" y="124" width="54" height="30"/>
-                                        <state key="normal" title="Delete">
-                                            <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="btnDelete_Click:" destination="mLz-iT-9St" eventType="touchUpInside" id="iNy-6L-YuL"/>
-                                        </connections>
-                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Contractor name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7TO-ed-LQM">
-                                        <rect key="frame" x="8" y="70" width="145" height="21"/>
+                                        <rect key="frame" x="18" y="70" width="145" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sRZ-9O-8va">
-                                        <rect key="frame" x="152" y="66" width="208" height="30"/>
+                                        <rect key="frame" x="166" y="66" width="194" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
                                             <action selector="txtContractorName_Changed:" destination="mLz-iT-9St" eventType="editingChanged" id="aAx-sR-Rsj"/>
                                         </connections>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wyw-Eq-psF">
-                                        <rect key="frame" x="149" y="124" width="77" height="30"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" title="OK"/>
-                                        <connections>
-                                            <action selector="btnUpdate_Click:" destination="mLz-iT-9St" eventType="touchUpInside" id="WAq-Aa-NBl"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7cT-hC-gbQ">
                                         <rect key="frame" x="337" y="6" width="30" height="30"/>
                                         <state key="normal" image="close.png"/>
@@ -846,10 +856,41 @@
                                             <action selector="btnClose_Click:" destination="mLz-iT-9St" eventType="touchUpInside" id="OOc-tw-HMH"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Phone number:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7dl-Ew-dMn">
+                                        <rect key="frame" x="18" y="114" width="145" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wbt-uM-Cf0">
+                                        <rect key="frame" x="166" y="110" width="194" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="txtContractorName_Changed:" destination="mLz-iT-9St" eventType="editingChanged" id="Ha0-FU-iN8"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wyw-Eq-psF">
+                                        <rect key="frame" x="130" y="152" width="77" height="30"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="OK"/>
+                                        <connections>
+                                            <action selector="btnUpdate_Click:" destination="mLz-iT-9St" eventType="touchUpInside" id="WAq-Aa-NBl"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R5j-uQ-DyY">
+                                        <rect key="frame" x="257" y="152" width="54" height="30"/>
+                                        <state key="normal" title="Delete">
+                                            <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="btnDelete_Click:" destination="mLz-iT-9St" eventType="touchUpInside" id="iNy-6L-YuL"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="162" id="2gI-yW-eOI"/>
+                                    <constraint firstAttribute="height" constant="190" id="Ufw-fK-JI6"/>
                                     <constraint firstAttribute="width" constant="375" id="xgb-rQ-G5Y"/>
                                 </constraints>
                             </view>
@@ -870,6 +911,7 @@
                         <outlet property="btnOK" destination="wyw-Eq-psF" id="YFw-7B-YWO"/>
                         <outlet property="tblContractors" destination="D2e-mR-P8E" id="cry-JI-liA"/>
                         <outlet property="txtContractorName" destination="sRZ-9O-8va" id="0jP-c4-Xc9"/>
+                        <outlet property="txtPhoneNumber" destination="Wbt-uM-Cf0" id="SH4-Hi-OEl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XFF-Ev-SDv" userLabel="First Responder" sceneMemberID="firstResponder"/>
