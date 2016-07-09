@@ -15,6 +15,7 @@ class WorkerController: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBOutlet weak var txtWorkerName: UITextField!
     @IBOutlet weak var btnOK: UIButton!
     @IBOutlet weak var pickerContractor: UIPickerView!
+    @IBOutlet weak var btnAdd: UIButton!
     
     // MARK: Model
     var lastIndex = NSIndexPath()
@@ -40,6 +41,8 @@ class WorkerController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     func showDialog() {
         btnOK.setTitle("OK", forState: .Normal)
+        btnAdd.hidden = true
+        
         tblWorkers.allowsSelection = false
         animateBoxSelection(dialog, from: 0, to: 1)
     }
@@ -131,6 +134,7 @@ class WorkerController: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBAction func txtWorkerName_Changed(sender: UITextField) {
         dirty = true
         btnOK.setTitle("Update", forState: .Normal)
+        btnAdd.hidden = false
     }
     
     

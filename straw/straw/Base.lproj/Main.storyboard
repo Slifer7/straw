@@ -232,8 +232,8 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="49" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0oo-SS-SeP">
-                                <rect key="frame" x="20" y="108" width="560" height="492"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="49" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0oo-SS-SeP">
+                                <rect key="frame" x="20" y="108" width="560" height="187"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StatisticsCellID" rowHeight="49" id="jbA-ex-xCx" customClass="StatisticsCell" customModule="straw" customModuleProvider="target">
@@ -645,7 +645,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Frm-Fu-jMA">
                                         <rect key="frame" x="63" y="162" width="69" height="30"/>
-                                        <state key="normal" title="Add"/>
+                                        <state key="normal" title="Add new"/>
                                         <connections>
                                             <action selector="btnAdd_Click:" destination="3Gv-rs-tVv" eventType="touchUpInside" id="8Xk-lR-7cT"/>
                                             <action selector="btnInsert:" destination="mLz-iT-9St" eventType="touchUpInside" id="ZVA-i7-lkD"/>
@@ -685,6 +685,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btnAdd" destination="Frm-Fu-jMA" id="itZ-ej-7ss"/>
                         <outlet property="btnOK" destination="44L-Dx-aYX" id="cMj-un-pzr"/>
                         <outlet property="dialog" destination="6LF-hi-4QW" id="Fft-hZ-iGJ"/>
                         <outlet property="pickerContractor" destination="rTZ-0B-R4n" id="Rcz-CB-diG"/>
@@ -792,7 +793,7 @@
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lAm-hy-cc1">
                                         <rect key="frame" x="50" y="124" width="69" height="30"/>
-                                        <state key="normal" title="Add"/>
+                                        <state key="normal" title="Add new"/>
                                         <connections>
                                             <action selector="btnInsert:" destination="mLz-iT-9St" eventType="touchUpInside" id="jjj-yh-WzD"/>
                                         </connections>
@@ -825,6 +826,7 @@
                     </view>
                     <connections>
                         <outlet property="boxInfo" destination="7zw-Ef-TiT" id="UZq-27-dva"/>
+                        <outlet property="btnAdd" destination="lAm-hy-cc1" id="YOP-mh-GiY"/>
                         <outlet property="btnOK" destination="wyw-Eq-psF" id="YFw-7B-YWO"/>
                         <outlet property="tblContractors" destination="D2e-mR-P8E" id="cry-JI-liA"/>
                         <outlet property="txtContractorName" destination="sRZ-9O-8va" id="0jP-c4-Xc9"/>
