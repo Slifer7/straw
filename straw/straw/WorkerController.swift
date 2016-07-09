@@ -72,30 +72,30 @@ class WorkerController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         return 0
     }
-    
-    
-    @IBAction func btnAdd_Click(sender: UIButton) {
-        let name = txtWorkerName.text!
-        let index = pickerContractor.selectedRowInComponent(0)
-        let contractorid = contractors[index].ContractorID
-        let phoneno = txtPhoneNumber.text!
-        
-        let worker = Worker(id: -1, name: name, cid: contractorid, phoneno: phoneno)
-        
-        // DB update
-        Worker.Insert(worker)
-        
-        // GUI update - Trường hợp phải move cell mệt quá nên nạp lại từ csdl cho chắc
-        let data = Worker.GetWorkersGroupByContractor()
-        contractors = data.Contractors
-        workers = data.Workers
-        tblWorkers.reloadData()
-        
-        hideDialog()
-        dirty = false
-    }
+
     
     @IBAction func btnUpdate_Click(sender: UIButton) {
+        if addMode {
+            let name = txtWorkerName.text!
+            let index = pickerContractor.selectedRowInComponent(0)
+            let contractorid = contractors[index].ContractorID
+            let phoneno = txtPhoneNumber.text!
+            
+            let worker = Worker(id: -1, name: name, cid: contractorid, phoneno: phoneno)
+            
+            // DB update
+            Worker.Insert(worker)
+            
+            // GUI update - Trường hợp phải move cell mệt quá nên nạp lại từ csdl cho chắc
+            let data = Worker.GetWorkersGroupByContractor()
+            contractors = data.Contractors
+            workers = data.Workers
+            tblWorkers.reloadData()
+            
+            hideDialog()
+            dirty = false
+            addMode = false
+        }
         if dirty {
             let worker = workers[lastIndex.section][lastIndex.row]
             let name = txtWorkerName.text!
@@ -140,19 +140,23 @@ class WorkerController: UIViewController, UITableViewDelegate, UITableViewDataSo
     var dirty = false
     
     @IBAction func txtWorkerName_Changed(sender: UITextField) {
-        dirty = true
-        btnOK.setTitle("Update", forState: .Normal)
-        btnDelete.hidden = true
+        if addMode  == false {
+            dirty = true
+            btnOK.setTitle("Update", forState: .Normal)
+            btnDelete.hidden = true
+        }
     }
     
     @IBAction func txtPhoneNumber_Changed(sender: UITextField) {
-        dirty = true
-        btnOK.setTitle("Update", forState: .Normal)
-        btnDelete.hidden = true
+        if addMode  == false {
+            dirty = true
+            btnOK.setTitle("Update", forState: .Normal)
+            btnDelete.hidden = true
+        }
     }
     
-    
     @IBAction func btnClose_Click(sender: UIButton) {
+        addMode = false
         hideDialog()
     }
     
@@ -169,8 +173,16 @@ class WorkerController: UIViewController, UITableViewDelegate, UITableViewDataSo
         self.navigationItem.setRightBarButtonItems([addButton], animated: true)
     }
     
+    var addMode = false
+    
     func addButton_Tapped(){
-        print("add")
+        addMode = true
+        txtWorkerName.text = ""
+        txtPhoneNumber.text = ""
+        showDialog()
+        
+        btnOK.setTitle("Add", forState: .Normal)
+        btnDelete.hidden = true
     }    
     
     // MARK: Table view

@@ -27,6 +27,13 @@ class ContractorController: UIViewController, UITableViewDelegate, UITableViewDa
             Contractor.Update(contractor)
             tblContractors.reloadData()
             dirty = false
+        } else if (addMode){
+            let contractor = Contractor(id: -1, name: txtContractorName.text!, phoneno: txtPhoneNumber.text)
+            Contractor.Insert(contractor)
+            contractors += [contractor]
+            tblContractors.reloadData()
+            hideBoxSelection()
+            addMode = false
         }
         hideBoxSelection()
     }
@@ -38,16 +45,7 @@ class ContractorController: UIViewController, UITableViewDelegate, UITableViewDa
         tblContractors.reloadData()
         hideBoxSelection()
     }
-    
-    @IBAction func btnInsert(sender: UIButton) {
-        let contractor = Contractor(id: -1, name: txtContractorName.text!, phoneno: txtPhoneNumber.text)
-        Contractor.Insert(contractor)
-        contractors += [contractor]
-        tblContractors.reloadData()
-        hideBoxSelection()
-        dirty = false
-    }
-    
+   
     func setupbox(){
         let radius = 5
         boxInfo.layer.cornerRadius = CGFloat(radius)
@@ -76,12 +74,18 @@ class ContractorController: UIViewController, UITableViewDelegate, UITableViewDa
     var dirty = false
     
     @IBAction func txtContractorName_Changed(sender: UITextField) {
-        dirty = true
-        btnOK.setTitle("Update", forState: .Normal)
-        btnDelete.hidden = true
+        if addMode == false {
+            dirty = true
+            btnOK.setTitle("Update", forState: .Normal)
+            btnDelete.hidden = true
+        }
     }
     
     @IBAction func btnClose_Click(sender: UIButton) {
+        if (addMode)
+        {
+            addMode = false
+        }
         hideBoxSelection()
     }
     
@@ -100,8 +104,15 @@ class ContractorController: UIViewController, UITableViewDelegate, UITableViewDa
         self.navigationItem.setRightBarButtonItems([addButton], animated: true)
     }
     
+    var addMode = false
+    
     func addButton_Tapped(){
-        print("add")
+        addMode = true
+        showBoxSelection()
+        btnOK.setTitle("Add", forState: .Normal)
+        btnDelete.hidden = true
+        txtContractorName.text = ""
+        txtPhoneNumber.text = ""
     }
     
     // MARK: Table view
