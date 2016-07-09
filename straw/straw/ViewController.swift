@@ -113,7 +113,7 @@ class ViewController: UIViewController {
             self.fromMonth = CurrentDate.Month()
             self.fromYear = CurrentDate.Year()
             
-            self.performSegueWithIdentifier("SegueShowPassword", sender: self)
+            self.performSegueWithIdentifier("SegueTodayStatistics", sender: self)
         }
         
         let byWeek = UIAlertAction(title: "By week", style: .Default){
@@ -184,9 +184,16 @@ class ViewController: UIViewController {
     
     // Pass data to another controller before segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let destination = segue.destinationViewController as? PasswordController
         
         if segue.identifier == "SegueShowPassword" {
+            let destination = segue.destinationViewController as? PasswordController
+            destination?.fromDay = fromDay
+            destination?.fromMonth = fromMonth
+            destination?.fromYear = fromYear
+            destination?.toDay = toDay
+            destination?.choice = choice
+        } else if segue.identifier == "SegueTodayStatistics" {
+            let destination = segue.destinationViewController as? StatisticsController
             destination?.fromDay = fromDay
             destination?.fromMonth = fromMonth
             destination?.fromYear = fromYear
@@ -194,8 +201,8 @@ class ViewController: UIViewController {
             destination?.choice = choice
         }
     }
-    
-    
+
+
     // MARK: Initial load
     override func viewDidLoad() {
         super.viewDidLoad()

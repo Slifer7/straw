@@ -52,6 +52,13 @@ class StatisticsController: UIViewController, UITableViewDelegate, UITableViewDa
         
         let btnExport =  UIBarButtonItem(title: "Export", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(btnExport_Tapped))
         self.navigationItem.setRightBarButtonItems([btnExport], animated: true)
+        let backButton = UIBarButtonItem(title: "Home", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(backButton_Tapped))
+        self.navigationItem.setLeftBarButtonItem(backButton, animated: true)
+        
+    }
+    
+    func backButton_Tapped() {
+        self.navigationController?.popToRootViewControllerAnimated(true)
     }
     
     func btnExport_Tapped() {

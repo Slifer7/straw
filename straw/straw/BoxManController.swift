@@ -179,7 +179,7 @@ class BoxManController : UIViewController, UITableViewDelegate, UITableViewDataS
             cell.txtWorkerName.text = "\(worker.WorkerName) - \(worker.PhoneNumber!)"
         } else {
             cell.txtWorkerName.text = "\(worker.WorkerName)"
-        }        
+        }
         
         if (worker.Status == "") {// Nothing
             cell.imgBoxTaken.hidden = true

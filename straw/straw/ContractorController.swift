@@ -102,6 +102,13 @@ class ContractorController: UIViewController, UITableViewDelegate, UITableViewDa
         
         let addButton = UIBarButtonItem(title: "Add", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(addButton_Tapped))
         self.navigationItem.setRightBarButtonItems([addButton], animated: true)
+        
+        let backButton = UIBarButtonItem(title: "Home", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(backButton_Tapped))
+        self.navigationItem.setLeftBarButtonItem(backButton, animated: true)        
+    }
+    
+    func backButton_Tapped() {
+        self.navigationController?.popToRootViewControllerAnimated(true)
     }
     
     var addMode = false
