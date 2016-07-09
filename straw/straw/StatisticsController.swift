@@ -66,6 +66,19 @@ class StatisticsController: UIViewController, UITableViewDelegate, UITableViewDa
         } else if choice == "year"{
             filename = "Statistics_\(fromYear).xlsx"
         }
+        
+       // if let dirs : [String] = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true) as? [String] {
+//            let dir = dirs[0] //documents directory
+//            let path = dir.stringByAppendingString(filename);
+//            let text = "some text"
+//            
+//            //writing
+//            text.writeToFile(path, atomically: false, encoding: NSUTF8StringEncoding, error: nil)
+//            
+//            //reading
+//            let text2 = String(contentsOfFile: path, encoding: NSUTF8StringEncoding, error: nil)
+//            print(text2)
+        //}
     }
     
     // MARK: Table view

@@ -375,17 +375,17 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Worker name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rv6-bN-09u">
-                                                    <rect key="frame" x="86" y="38" width="170" height="21"/>
+                                                    <rect key="frame" x="86" y="38" width="214" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="W2Y-5x-Zl5"/>
-                                                        <constraint firstAttribute="width" constant="170" id="eB8-D8-Zwu"/>
+                                                        <constraint firstAttribute="width" constant="210" id="eB8-D8-Zwu"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                     <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hw7-6k-FiZ">
-                                                    <rect key="frame" x="241" y="-11" width="200" height="119"/>
+                                                    <rect key="frame" x="281" y="-11" width="200" height="119"/>
                                                     <subviews>
                                                         <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="emptybox.png" translatesAutoresizingMaskIntoConstraints="NO" id="Hj0-kZ-6c9">
                                                             <rect key="frame" x="31" y="20" width="50" height="50"/>

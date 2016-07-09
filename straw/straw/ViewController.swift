@@ -204,13 +204,13 @@ class ViewController: UIViewController {
     
     // MARK: Main view
     @IBAction func btnContractor_Tapped(sender: UIButton) {
-        choice = "Worker"
+        choice = "Contractors"
         self.performSegueWithIdentifier("SegueShowPassword", sender: self)
     }
     
     @IBAction func btnWorkers_Tapped(sender: UIButton) {
-        self.performSegueWithIdentifier("SegueShowPassword", sender: self)
-        choice = "Contractor"
+        choice = "Workers"
+        self.performSegueWithIdentifier("SegueShowPassword", sender: self)        
     }
     
 }

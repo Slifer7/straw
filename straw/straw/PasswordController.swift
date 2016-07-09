@@ -60,10 +60,10 @@ class PasswordController : UIViewController {
             if config.Pass != pass {
                 MessageBox.Show(self, title: "Error", message: "Password is incorrect!")
             }else { // Correct password
-                txtPassword.text = ""
-                if choice == "Worker" {
+                txtPassword.text = "" // Tạm thời reset đỡ ô mật khẩu về rỗng khi bấm back
+                if choice == "Workers" {
                     self.performSegueWithIdentifier("SegueShowWorkers", sender: self)
-                } else if choice == "Contractor" {
+                } else if choice == "Contractors" {
                     self.performSegueWithIdentifier("SegueShowContractors", sender: self)
                 }
                 else {

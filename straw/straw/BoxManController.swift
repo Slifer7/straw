@@ -52,7 +52,7 @@ class BoxManController : UIViewController, UITableViewDelegate, UITableViewDataS
                 var list = [Worker]()
                 
                 for j in 0..<originWorkers[i].count{
-                    if originWorkers[i][j].WorkerName.containsString(pattern){
+                    if originWorkers[i][j].WorkerName.lowercaseString.containsString(pattern.lowercaseString){
                         list += [originWorkers[i][j]]
                     }
                 }
@@ -175,7 +175,11 @@ class BoxManController : UIViewController, UITableViewDelegate, UITableViewDataS
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tblWorkers.dequeueReusableCellWithIdentifier("BoxCellID", forIndexPath: indexPath) as! BoxManCell
         let worker = workers[indexPath.section][indexPath.row]
-        cell.txtWorkerName.text = worker.WorkerName
+        if worker.PhoneNumber?.characters.count > 0 {
+            cell.txtWorkerName.text = "\(worker.WorkerName) - \(worker.PhoneNumber!)"
+        } else {
+            cell.txtWorkerName.text = "\(worker.WorkerName)"
+        }        
         
         if (worker.Status == "") {// Nothing
             cell.imgBoxTaken.hidden = true
