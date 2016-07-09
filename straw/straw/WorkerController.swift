@@ -17,6 +17,7 @@ class WorkerController: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBOutlet weak var pickerContractor: UIPickerView!
     @IBOutlet weak var btnAdd: UIButton!
     @IBOutlet weak var txtPhoneNumber: UITextField!
+    @IBOutlet weak var btnDelete: UIButton!
     
     
     // MARK: Model
@@ -44,7 +45,7 @@ class WorkerController: UIViewController, UITableViewDelegate, UITableViewDataSo
     func showDialog() {
         btnOK.setTitle("OK", forState: .Normal)
         btnAdd.hidden = true
-        
+        btnDelete.hidden = false
         tblWorkers.allowsSelection = false
         animateBoxSelection(dialog, from: 0, to: 1)
     }
@@ -144,12 +145,14 @@ class WorkerController: UIViewController, UITableViewDelegate, UITableViewDataSo
         dirty = true
         btnOK.setTitle("Update", forState: .Normal)
         btnAdd.hidden = false
+        btnDelete.hidden = true
     }
     
     @IBAction func txtPhoneNumber_Changed(sender: UITextField) {
         dirty = true
         btnOK.setTitle("Update", forState: .Normal)
         btnAdd.hidden = false
+        btnDelete.hidden = true
     }
     
     

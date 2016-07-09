@@ -710,7 +710,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oq9-3m-hTS">
-                                        <rect key="frame" x="337" y="0.0" width="30" height="30"/>
+                                        <rect key="frame" x="337" y="6" width="30" height="30"/>
                                         <state key="normal" image="close.png"/>
                                         <connections>
                                             <action selector="btnClose_Click:" destination="3Gv-rs-tVv" eventType="touchUpInside" id="3ac-jg-LYg"/>
@@ -736,6 +736,7 @@
                     </view>
                     <connections>
                         <outlet property="btnAdd" destination="Frm-Fu-jMA" id="itZ-ej-7ss"/>
+                        <outlet property="btnDelete" destination="B9S-zu-TxY" id="8op-ps-XyV"/>
                         <outlet property="btnOK" destination="44L-Dx-aYX" id="cMj-un-pzr"/>
                         <outlet property="dialog" destination="6LF-hi-4QW" id="Fft-hZ-iGJ"/>
                         <outlet property="pickerContractor" destination="rTZ-0B-R4n" id="Rcz-CB-diG"/>
@@ -858,7 +859,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7cT-hC-gbQ">
-                                        <rect key="frame" x="337" y="0.0" width="30" height="30"/>
+                                        <rect key="frame" x="337" y="6" width="30" height="30"/>
                                         <state key="normal" image="close.png"/>
                                         <connections>
                                             <action selector="btnClose_Click:" destination="mLz-iT-9St" eventType="touchUpInside" id="OOc-tw-HMH"/>
@@ -885,6 +886,7 @@
                     <connections>
                         <outlet property="boxInfo" destination="7zw-Ef-TiT" id="UZq-27-dva"/>
                         <outlet property="btnAdd" destination="lAm-hy-cc1" id="YOP-mh-GiY"/>
+                        <outlet property="btnDelete" destination="R5j-uQ-DyY" id="vFh-Qx-Ieq"/>
                         <outlet property="btnOK" destination="wyw-Eq-psF" id="YFw-7B-YWO"/>
                         <outlet property="tblContractors" destination="D2e-mR-P8E" id="cry-JI-liA"/>
                         <outlet property="txtContractorName" destination="sRZ-9O-8va" id="0jP-c4-Xc9"/>
