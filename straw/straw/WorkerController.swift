@@ -16,6 +16,8 @@ class WorkerController: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBOutlet weak var btnOK: UIButton!
     @IBOutlet weak var pickerContractor: UIPickerView!
     @IBOutlet weak var btnAdd: UIButton!
+    @IBOutlet weak var txtPhoneNumber: UITextField!
+    
     
     // MARK: Model
     var lastIndex = NSIndexPath()
@@ -57,6 +59,7 @@ class WorkerController: UIViewController, UITableViewDelegate, UITableViewDataSo
         txtWorkerName.text = worker.WorkerName
         let index = findIndexOfWorkerContractor(worker.ContractorID)
         pickerContractor.selectRow(index, inComponent: 0, animated: true)
+        txtPhoneNumber.text = worker.PhoneNumber
     
     }
 
@@ -76,8 +79,9 @@ class WorkerController: UIViewController, UITableViewDelegate, UITableViewDataSo
         let name = txtWorkerName.text!
         let index = pickerContractor.selectedRowInComponent(0)
         let contractorid = contractors[index].ContractorID
+        let phoneno = txtPhoneNumber.text!
         
-        let worker = Worker(id: -1, name: name, cid: contractorid)
+        let worker = Worker(id: -1, name: name, cid: contractorid, phoneno: phoneno)
         
         // DB update
         Worker.Insert(worker)
@@ -97,10 +101,15 @@ class WorkerController: UIViewController, UITableViewDelegate, UITableViewDataSo
             let worker = workers[lastIndex.section][lastIndex.row]
             let name = txtWorkerName.text!
             let index = pickerContractor.selectedRowInComponent(0)
+            var phoneno = ""
+            if txtPhoneNumber.text?.characters.count > 0
+            {
+                phoneno = txtPhoneNumber.text!
+            }
             let contractorid = contractors[index].ContractorID
             
             // DB update
-            Worker.Update(worker.Workerid, name: name, cid: contractorid)
+            Worker.Update(worker.Workerid, name: name, cid: contractorid, phone: phoneno)
             
             // GUI update - Trường hợp phải move cell mệt quá nên nạp lại từ csdl cho chắc
             let data = Worker.GetWorkersGroupByContractor()
@@ -137,6 +146,16 @@ class WorkerController: UIViewController, UITableViewDelegate, UITableViewDataSo
         btnAdd.hidden = false
     }
     
+    @IBAction func txtPhoneNumber_Changed(sender: UITextField) {
+        dirty = true
+        btnOK.setTitle("Update", forState: .Normal)
+        btnAdd.hidden = false
+    }
+    
+    
+    @IBAction func btnClose_Click(sender: UIButton) {
+        hideDialog()
+    }
     
     // MARK: Initial load
     override func viewDidLoad() {
@@ -167,6 +186,15 @@ class WorkerController: UIViewController, UITableViewDelegate, UITableViewDataSo
         let cell = tblWorkers.dequeueReusableCellWithIdentifier("WorkerCellID", forIndexPath: indexPath) as! WorkerCell
         let worker = workers[indexPath.section][indexPath.row]
         cell.lblWorkerName.text = worker.WorkerName
+        if worker.PhoneNumber != nil {
+            if worker.PhoneNumber!.characters.count > 0 {
+                cell.lblInfo.text = "Phone number: \(worker.PhoneNumber!)"
+            } else {
+                cell.lblInfo.text = ""
+            }
+        } else {
+            cell.lblInfo.text = ""
+        }
         
         return cell
     }

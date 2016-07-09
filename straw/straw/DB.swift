@@ -57,12 +57,14 @@ class DB {
         
         let worker = Table("worker")
         let contractorid = Expression<Int64>("contractorid")
-        
+        let phoneno = Expression<String?>("phonenumber")
+            
         try! db.run(worker.create(ifNotExists: true){ t in
             t.column(id, primaryKey: true)
             t.column(name)
+            t.column(phoneno)
             t.column(contractorid)
-            })
+        })
         
         let boxasg = Table("boxassignment") // current assignment
         let workerid = Expression<Int64>("workerid")
@@ -146,6 +148,7 @@ class DB {
         
         // Tạo bảng công nhân
         let worker = Table("worker")
+        let phoneno = Expression<String?>("phonenumber")
         let contractorid = Expression<Int64>("contractorid")
         var groups = [
             ["Bobby", "Valen", "Bruno", "Alice", "Sky", "Colin", "Jay", "Harry", "Lucy", "William",
@@ -159,7 +162,7 @@ class DB {
         for i in 0..<contractorids.count{
             let cid = contractorids[i]
             for workername in groups[i]{
-                try! db.run(worker.insert(name <- workername, contractorid <- cid))
+                try! db.run(worker.insert(name <- workername, contractorid <- cid, phoneno <- ""))
             }
         }
     }
@@ -188,10 +191,11 @@ class DB {
         let table = Table("worker")
         let id = Expression<Int64>("id")
         let name = Expression<String>("name")
+        let phoneno = Expression<String?>("phonenumber")
         let contractorid = Expression<Int64>("contractorid")
         
-        for row in try! db.prepare(table.select(id, name).filter(contractorid == cid)) {
-            let worker = Worker(id: row[id], name: row[name], cid: cid)
+        for row in try! db.prepare(table.select(id, name, phoneno).filter(contractorid == cid)) {
+            let worker = Worker(id: row[id], name: row[name], cid: cid, phoneno: row[phoneno])
             
             // Lấy luôn cả thông tin assignment hiện có của worker của ngày hiện tại
             let asgInfo = self.GetAssignment(Int(worker.Workerid), day: CurrentDate.Day(), month: CurrentDate.Month(), year: CurrentDate.Year())
@@ -238,7 +242,7 @@ class DB {
         let lastActionTime = Expression<String>("time")
         
         let row = db.pluck(table.filter(workerid == Int64(wid) && d == Int64(day) && m == Int64(month) && y == Int64(year)))
-        let worker = Worker(id: -1, name: "", cid: -1)
+        let worker = Worker(id: -1, name: "", cid: -1, phoneno: "")
         
         if row != nil{
             worker.Day = day
@@ -393,10 +397,11 @@ class DB {
             let table = Table("worker")
             let id = Expression<Int64>("id")
             let name = Expression<String>("name")
+            let phoneno = Expression<String?>("phonenumber")
             let contractorid = Expression<Int64>("contractorid")
             
-            for row in try! db.prepare(table.select(id, name).filter(contractorid == contractor.ContractorID)) {
-                let worker = Worker(id: row[id], name: row[name], cid: contractor.ContractorID)
+            for row in try! db.prepare(table.select(id, name, phoneno).filter(contractorid == contractor.ContractorID)) {
+                let worker = Worker(id: row[id], name: row[name], cid: contractor.ContractorID, phoneno: row[phoneno])
                 
                 // Dùng chung số hộp và tổng số hộp
                 worker.BoxNumber = self.GetBoxCount(Int(worker.Workerid), fromday: fromday, frommonth: frommonth, fromyear: fromyear, today: today)
@@ -425,10 +430,11 @@ class DB {
             let table = Table("worker")
             let id = Expression<Int64>("id")
             let name = Expression<String>("name")
+            let phoneno = Expression<String?>("phonenumber")
             let contractorid = Expression<Int64>("contractorid")
             
-            for row in try! db.prepare(table.select(id, name).filter(contractorid == contractor.ContractorID)) {
-                let worker = Worker(id: row[id], name: row[name], cid: contractor.ContractorID)
+            for row in try! db.prepare(table.select(id, name, phoneno).filter(contractorid == contractor.ContractorID)) {
+                let worker = Worker(id: row[id], name: row[name], cid: contractor.ContractorID, phoneno: row[phoneno])
                 
                 // Dùng chung số hộp và tổng số hộp
                 worker.BoxNumber = self.GetBoxCount(Int(worker.Workerid), frommonth: frommonth, fromyear: fromyear)
@@ -457,10 +463,11 @@ class DB {
             let table = Table("worker")
             let id = Expression<Int64>("id")
             let name = Expression<String>("name")
+            let phoneno = Expression<String?>("phonenumber")
             let contractorid = Expression<Int64>("contractorid")
             
-            for row in try! db.prepare(table.select(id, name).filter(contractorid == contractor.ContractorID)) {
-                let worker = Worker(id: row[id], name: row[name], cid: contractor.ContractorID)
+            for row in try! db.prepare(table.select(id, name, phoneno).filter(contractorid == contractor.ContractorID)) {
+                let worker = Worker(id: row[id], name: row[name], cid: contractor.ContractorID, phoneno: row[phoneno])
                 
                 // Dùng chung số hộp và tổng số hộp
                 worker.BoxNumber = self.GetBoxCount(Int(worker.Workerid), fromyear: fromyear)

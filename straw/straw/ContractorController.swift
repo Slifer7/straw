@@ -79,6 +79,11 @@ class ContractorController: UIViewController, UITableViewDelegate, UITableViewDa
         btnAdd.hidden = false
     }
     
+    @IBAction func btnClose_Click(sender: UIButton) {
+        hideBoxSelection()
+    }
+    
+    
     // MARK: model
     var contractors = DB.GetContractors()
     var lastIndex = NSIndexPath()

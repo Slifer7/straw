@@ -11,6 +11,7 @@ class Worker{
     var Workerid: Int64 = -1
     var WorkerName = ""
     var ContractorID:Int64 = -1
+    var PhoneNumber: String?
     
     var Day = -1
     var Month = -1
@@ -22,10 +23,11 @@ class Worker{
     
     var LastActionTime = "" // Lưu lại lần thao tác cuối cùng
     
-    init(id: Int64, name: String, cid: Int64){
+    init(id: Int64, name: String, cid: Int64, phoneno: String?){
         Workerid = id
         WorkerName = name
         ContractorID = cid
+        PhoneNumber = phoneno
     }
     
     static func GetWorkersGroupByContractor() -> (Contractors: [Contractor], Workers: [[Worker]]){
@@ -46,34 +48,37 @@ class Worker{
         let table = Table("worker")
         let id = Expression<Int64>("id")
         let name = Expression<String>("name")
+        let phoneno = Expression<String?>("phonenumber")
         let contractorid = Expression<Int64>("contractorid")
         
-        for row in try! db.prepare(table.select(id, name).filter(contractorid == cid)) {
-            let worker = Worker(id: row[id], name: row[name], cid: cid)
+        for row in try! db.prepare(table.select(id, name, phoneno).filter(contractorid == cid)) {
+            let worker = Worker(id: row[id], name: row[name], cid: cid, phoneno: row[phoneno])
             list += [worker]
         }
         
         return list
     }
     
-    static func Update(wid: Int64, name: String, cid: Int64){
+    static func Update(wid: Int64, name: String, cid: Int64, phone: String?){
         let db = DB.GetDB()
         let table = Table("worker")
         let id = Expression<Int64>("id")
         let wname = Expression<String>("name")
+        let phoneno = Expression<String?>("phonenumber")
         let contractorid = Expression<Int64>("contractorid")
         
         let w = table.filter(id == wid)
-        try! db.run(w.update(wname <- name, contractorid <- cid))
+        try! db.run(w.update(wname <- name, contractorid <- cid, phoneno <- phone))
     }
     
     static func Insert(worker: Worker){
         let db = DB.GetDB()
         let table = Table("worker")
         let wname = Expression<String>("name")
+        let phoneno = Expression<String?>("phonenumber")
         let contractorid = Expression<Int64>("contractorid")
  
-        let rowid = try! db.run(table.insert(wname <- worker.WorkerName, contractorid <- worker.ContractorID))
+        let rowid = try! db.run(table.insert(wname <- worker.WorkerName, contractorid <- worker.ContractorID, phoneno <- worker.PhoneNumber))
         worker.Workerid = rowid
     }
     

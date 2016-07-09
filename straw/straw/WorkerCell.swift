@@ -10,4 +10,5 @@ import UIKit
 
 class WorkerCell : UITableViewCell{
     @IBOutlet weak var lblWorkerName: UILabel!
+    @IBOutlet weak var lblInfo: UILabel!
 }
