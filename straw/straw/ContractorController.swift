@@ -15,7 +15,6 @@ class ContractorController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var txtContractorName: UITextField!
     @IBOutlet weak var boxInfo: UIView!
     @IBOutlet weak var btnOK: UIButton!
-    @IBOutlet weak var btnAdd: UIButton!
     @IBOutlet weak var btnDelete: UIButton!
     
     // MARK: Dialog
@@ -65,7 +64,6 @@ class ContractorController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func showBoxSelection() {
         btnOK.setTitle("OK", forState: .Normal)
-        btnAdd.hidden = true
         btnDelete.hidden = false
         animateBoxSelection(0, to: 1)
     }
@@ -78,7 +76,6 @@ class ContractorController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBAction func txtContractorName_Changed(sender: UITextField) {
         dirty = true
         btnOK.setTitle("Update", forState: .Normal)
-        btnAdd.hidden = false
         btnDelete.hidden = true
     }
     

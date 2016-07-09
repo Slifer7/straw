@@ -38,7 +38,6 @@ class BoxManController : UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     // MARK: Filter
-    
     @IBAction func txtFilterName_TextChanged(sender: UITextField) {
         let data = DB.GetWorkersGroupByContractor()
         let originContractors = data.Contractors
@@ -73,6 +72,12 @@ class BoxManController : UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     // MARK: Box selection
+    
+    @IBAction func btnClose_Click(sender: UIButton) {
+        hideBoxSelection()
+    }
+    
+    
     @IBAction func btnTake_Click(sender: UIButton) {
         if txtBoxNo.text?.characters.count == 0{
             MessageBox.Show(self, title: "Error", message: "Please specify box number!")
@@ -108,11 +113,7 @@ class BoxManController : UIViewController, UITableViewDelegate, UITableViewDataS
         DB.SaveTaskDone(worker)
         DB.DeleteAssignment(worker)
     }
-
-    @IBAction func btnCancel_Click(sender: UIButton) {
-        hideBoxSelection()
-    }
-    
+   
     func animateBoxSelection(from: CGFloat, to: CGFloat){
         self.dialogBoxSelection.alpha = from
         
@@ -190,13 +191,13 @@ class BoxManController : UIViewController, UITableViewDelegate, UITableViewDataS
             cell.imgFinish.hidden = true
             cell.txtFinish.hidden = true
             cell.txtLastActionTime.hidden = false
-            cell.txtLastActionTime.text = "Box #\(worker.BoxNumber). Last action time: \(worker.LastActionTime)"
+            cell.txtLastActionTime.text = "Box #\(worker.BoxNumber). Time: \(worker.LastActionTime)"
         } else if (worker.Status == "Finished"){
             cell.imgBoxTaken.hidden = false
             cell.txtBoxType.hidden = false
             cell.imgFinish.hidden = false
             cell.txtFinish.hidden = false
-            cell.txtLastActionTime.text = "Box #\(worker.BoxNumber). Last action time: \(worker.LastActionTime)"
+            cell.txtLastActionTime.text = "Box #\(worker.BoxNumber). Time: \(worker.LastActionTime)"
         }
         
         return cell
@@ -207,6 +208,7 @@ class BoxManController : UIViewController, UITableViewDelegate, UITableViewDataS
         let worker = workers[indexPath.section][indexPath.row]
         
         if worker.Status == "" || worker.Status == "Finished" {
+            txtBoxNo.text = ""
             DisableFinishButton()
             showBoxSelection()
         } else if worker.Status == "Taken" {
@@ -223,6 +225,8 @@ class BoxManController : UIViewController, UITableViewDelegate, UITableViewDataS
         lblFinished.enabled = true
         btnClear.alpha = 1
         btnClear.enabled = true
+        btnFinish.alpha = 1
+        lblFinished.alpha = 1
     }
     
     func DisableFinishButton(){
@@ -230,6 +234,8 @@ class BoxManController : UIViewController, UITableViewDelegate, UITableViewDataS
         lblFinished.enabled = false
         btnClear.alpha = 0.2
         btnClear.enabled = true
+        btnFinish.alpha = 0.5
+        lblFinished.alpha = 0.5
     }
     
     func AutoFillDataToBoxSelectionDialog(worker: Worker){

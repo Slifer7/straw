@@ -58,7 +58,7 @@
                                     <segue destination="58j-zH-CiK" kind="show" id="fi9-qW-hfZ"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wkX-7D-tVt">
+                            <view alpha="0.0" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wkX-7D-tVt">
                                 <rect key="frame" x="86" y="370" width="385" height="149"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PMO-He-pcB">
@@ -385,7 +385,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hw7-6k-FiZ">
-                                                    <rect key="frame" x="263" y="-11" width="206" height="119"/>
+                                                    <rect key="frame" x="241" y="-11" width="200" height="119"/>
                                                     <subviews>
                                                         <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="emptybox.png" translatesAutoresizingMaskIntoConstraints="NO" id="Hj0-kZ-6c9">
                                                             <rect key="frame" x="31" y="20" width="50" height="50"/>
@@ -408,14 +408,14 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="206" id="TOZ-mr-vyU"/>
+                                                        <constraint firstAttribute="width" constant="200" id="TOZ-mr-vyU"/>
                                                         <constraint firstAttribute="height" constant="118" id="tAB-kR-OGz"/>
                                                     </constraints>
                                                 </view>
                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last action time: 8:15:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YTZ-T4-tzZ">
-                                                    <rect key="frame" x="152" y="38" width="400" height="21"/>
+                                                    <rect key="frame" x="302" y="38" width="250" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="400" id="Kuc-it-CAr"/>
+                                                        <constraint firstAttribute="width" constant="250" id="Kuc-it-CAr"/>
                                                         <constraint firstAttribute="height" constant="21" id="RjF-dT-Xsh"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -426,7 +426,7 @@
                                             <constraints>
                                                 <constraint firstItem="YTZ-T4-tzZ" firstAttribute="centerY" secondItem="CkI-v6-MKj" secondAttribute="centerY" id="O1t-oR-Gci"/>
                                                 <constraint firstItem="CBs-Wo-GCU" firstAttribute="centerY" secondItem="CkI-v6-MKj" secondAttribute="centerY" id="bma-sF-baQ"/>
-                                                <constraint firstItem="hw7-6k-FiZ" firstAttribute="leading" secondItem="Rv6-bN-09u" secondAttribute="trailing" constant="7" id="dcm-AU-wSJ"/>
+                                                <constraint firstItem="hw7-6k-FiZ" firstAttribute="leading" secondItem="Rv6-bN-09u" secondAttribute="trailing" constant="-15" id="dcm-AU-wSJ"/>
                                                 <constraint firstItem="CBs-Wo-GCU" firstAttribute="leading" secondItem="CkI-v6-MKj" secondAttribute="leadingMargin" id="dp8-wA-w5L"/>
                                                 <constraint firstItem="Rv6-bN-09u" firstAttribute="leading" secondItem="CBs-Wo-GCU" secondAttribute="trailing" constant="8" id="nMm-Yd-ZQM"/>
                                                 <constraint firstItem="hw7-6k-FiZ" firstAttribute="centerY" secondItem="CkI-v6-MKj" secondAttribute="centerY" id="nrm-fM-ZQF"/>
@@ -474,8 +474,8 @@
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Finished" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4G4-Z7-5Hb">
                                         <rect key="frame" x="359" y="155" width="70" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.14196592569351196" green="0.47421300411224365" blue="0.085976727306842804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <color key="textColor" red="0.079843409359455109" green="0.79322022199630737" blue="0.18110322952270508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Box type:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uHe-bI-wLA">
@@ -495,16 +495,6 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b1B-uN-fTS">
-                                        <rect key="frame" x="36" y="190" width="64" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <state key="normal" title="Cancel">
-                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="btnCancel_Click:" destination="58j-zH-CiK" eventType="touchUpInside" id="y5V-JU-fPx"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I1D-nA-yFP">
                                         <rect key="frame" x="167" y="190" width="76" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -520,6 +510,13 @@
                                         </state>
                                         <connections>
                                             <action selector="btnClearInfo_Click:" destination="58j-zH-CiK" eventType="touchUpInside" id="E8g-dY-kEL"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l6S-Tv-ne6">
+                                        <rect key="frame" x="429" y="7" width="30" height="30"/>
+                                        <state key="normal" image="close.png"/>
+                                        <connections>
+                                            <action selector="btnClose_Click:" destination="58j-zH-CiK" eventType="touchUpInside" id="OZ7-k8-4iJ"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -642,14 +639,6 @@
                                             <action selector="btnDelete_Click:" destination="mLz-iT-9St" eventType="touchUpInside" id="f2J-k5-UZo"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Frm-Fu-jMA">
-                                        <rect key="frame" x="60" y="223" width="69" height="30"/>
-                                        <state key="normal" title="Add new"/>
-                                        <connections>
-                                            <action selector="btnAdd_Click:" destination="3Gv-rs-tVv" eventType="touchUpInside" id="8Xk-lR-7cT"/>
-                                            <action selector="btnInsert:" destination="mLz-iT-9St" eventType="touchUpInside" id="ZVA-i7-lkD"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="44L-Dx-aYX">
                                         <rect key="frame" x="152" y="223" width="73" height="30"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -735,7 +724,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="btnAdd" destination="Frm-Fu-jMA" id="itZ-ej-7ss"/>
                         <outlet property="btnDelete" destination="B9S-zu-TxY" id="8op-ps-XyV"/>
                         <outlet property="btnOK" destination="44L-Dx-aYX" id="cMj-un-pzr"/>
                         <outlet property="dialog" destination="6LF-hi-4QW" id="Fft-hZ-iGJ"/>
@@ -843,13 +831,6 @@
                                             <action selector="txtContractorName_Changed:" destination="mLz-iT-9St" eventType="editingChanged" id="aAx-sR-Rsj"/>
                                         </connections>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lAm-hy-cc1">
-                                        <rect key="frame" x="50" y="124" width="69" height="30"/>
-                                        <state key="normal" title="Add new"/>
-                                        <connections>
-                                            <action selector="btnInsert:" destination="mLz-iT-9St" eventType="touchUpInside" id="jjj-yh-WzD"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wyw-Eq-psF">
                                         <rect key="frame" x="149" y="124" width="77" height="30"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -885,7 +866,6 @@
                     </view>
                     <connections>
                         <outlet property="boxInfo" destination="7zw-Ef-TiT" id="UZq-27-dva"/>
-                        <outlet property="btnAdd" destination="lAm-hy-cc1" id="YOP-mh-GiY"/>
                         <outlet property="btnDelete" destination="R5j-uQ-DyY" id="vFh-Qx-Ieq"/>
                         <outlet property="btnOK" destination="wyw-Eq-psF" id="YFw-7B-YWO"/>
                         <outlet property="tblContractors" destination="D2e-mR-P8E" id="cry-JI-liA"/>
