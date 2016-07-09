@@ -48,7 +48,24 @@ class StatisticsController: UIViewController, UITableViewDelegate, UITableViewDa
             let data = DB.DoStatistics(fromYear)
             contractors = data.Contractors
             workers = data.Workers
-        }        
+        }
+        
+        let btnExport =  UIBarButtonItem(title: "Export", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(btnExport_Tapped))
+        self.navigationItem.setRightBarButtonItems([btnExport], animated: true)
+    }
+    
+    func btnExport_Tapped() {
+        var filename = ""
+        if choice == "today" {
+            filename = "Statistics_\(fromYear)\(fromMonth)\(fromDay).xlsx"
+            
+        } else if choice == "week"{
+            filename = "Statistics_\(fromYear)\(fromMonth)\(fromDay)_\(toDay).xlsx"
+        } else if choice == "month"{
+            filename = "Statistics_\(fromYear)\(fromMonth).xlsx"
+        } else if choice == "year"{
+            filename = "Statistics_\(fromYear).xlsx"
+        }
     }
     
     // MARK: Table view
