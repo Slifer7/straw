@@ -344,7 +344,7 @@ class DB {
     static func GetBoxCountByDay(workerid: Int, day: Int, month: Int, year: Int) ->Int{
         let db = GetDB()
 
-        let count = try! db.scalar("SELECT count(*) FROM taskresult where workerid=\(workerid) and day=\(day) and month=\(month) and year=\(year)" ) as! Int64
+        let count = db.scalar("SELECT count(*) FROM taskresult where workerid=\(workerid) and day=\(day) and month=\(month) and year=\(year)" ) as! Int64
         
         return Int(count)
     }
@@ -353,7 +353,7 @@ class DB {
     static func GetBoxCount(workerid: Int, fromday: Int, frommonth: Int, fromyear: Int, today: Int) ->Int{
         let db = GetDB()
         
-        let count = try! db.scalar("SELECT count(*) FROM taskresult where workerid=\(workerid) and day>=\(fromday) and month=\(frommonth) and year=\(fromyear) and day<=\(today)" ) as! Int64
+        let count = db.scalar("SELECT count(*) FROM taskresult where workerid=\(workerid) and day>=\(fromday) and month=\(frommonth) and year=\(fromyear) and day<=\(today)" ) as! Int64
         
         return Int(count)
     }
@@ -361,7 +361,7 @@ class DB {
     static func GetBoxCount(type: String, workerid: Int, fromday: Int, frommonth: Int, fromyear: Int, today: Int) ->Int{
         let db = GetDB()
         
-        let count = try! db.scalar("SELECT count(*) FROM taskresult where workerid=\(workerid) and day>=\(fromday) and month=\(frommonth) and year=\(fromyear) and day<=\(today) and boxtype='\(type)'" ) as! Int64
+        let count = db.scalar("SELECT count(*) FROM taskresult where workerid=\(workerid) and day>=\(fromday) and month=\(frommonth) and year=\(fromyear) and day<=\(today) and boxtype='\(type)'" ) as! Int64
         
         return Int(count)
     }
@@ -370,7 +370,7 @@ class DB {
     static func GetBoxCount(workerid: Int, frommonth: Int, fromyear: Int) ->Int{
         let db = GetDB()
         
-        let count = try! db.scalar("SELECT count(*) FROM taskresult where workerid=\(workerid) and month=\(frommonth) and year=\(fromyear)" ) as! Int64
+        let count = db.scalar("SELECT count(*) FROM taskresult where workerid=\(workerid) and month=\(frommonth) and year=\(fromyear)" ) as! Int64
         
         return Int(count)
     }
@@ -378,7 +378,7 @@ class DB {
     static func GetBoxCount(type:String, workerid: Int, frommonth: Int, fromyear: Int) ->Int{
         let db = GetDB()
         
-        let count = try! db.scalar("SELECT count(*) FROM taskresult where workerid=\(workerid) and month=\(frommonth) and year=\(fromyear) and boxtype='\(type)'" ) as! Int64
+        let count = db.scalar("SELECT count(*) FROM taskresult where workerid=\(workerid) and month=\(frommonth) and year=\(fromyear) and boxtype='\(type)'" ) as! Int64
         
         return Int(count)
     }
@@ -387,7 +387,7 @@ class DB {
     static func GetBoxCount(workerid: Int, fromyear: Int) ->Int{
         let db = GetDB()
         
-        let count = try! db.scalar("SELECT count(*) FROM taskresult where workerid=\(workerid) and year=\(fromyear)" ) as! Int64
+        let count = db.scalar("SELECT count(*) FROM taskresult where workerid=\(workerid) and year=\(fromyear)" ) as! Int64
         
         return Int(count)
     }
@@ -395,7 +395,7 @@ class DB {
     static func GetBoxCount(type:String, workerid: Int, fromyear: Int) ->Int{
         let db = GetDB()
         
-        let count = try! db.scalar("SELECT count(*) FROM taskresult where workerid=\(workerid) and year=\(fromyear) and boxtype='\(type)'" ) as! Int64
+        let count = db.scalar("SELECT count(*) FROM taskresult where workerid=\(workerid) and year=\(fromyear) and boxtype='\(type)'" ) as! Int64
         
         return Int(count)
     }

@@ -62,17 +62,17 @@ class StatisticsController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func btnExport_Tapped() {
-        var filename = ""
-        if choice == "today" {
-            filename = "Statistics_\(fromYear)\(fromMonth)\(fromDay).xlsx"
-            
-        } else if choice == "week"{
-            filename = "Statistics_\(fromYear)\(fromMonth)\(fromDay)_\(toDay).xlsx"
-        } else if choice == "month"{
-            filename = "Statistics_\(fromYear)\(fromMonth).xlsx"
-        } else if choice == "year"{
-            filename = "Statistics_\(fromYear).xlsx"
-        }
+//        var filename = ""
+//        if choice == "today" {
+//            filename = "Statistics_\(fromYear)\(fromMonth)\(fromDay).xlsx"
+//            
+//        } else if choice == "week"{
+//            filename = "Statistics_\(fromYear)\(fromMonth)\(fromDay)_\(toDay).xlsx"
+//        } else if choice == "month"{
+//            filename = "Statistics_\(fromYear)\(fromMonth).xlsx"
+//        } else if choice == "year"{
+//            filename = "Statistics_\(fromYear).xlsx"
+//        }
         
        // if let dirs : [String] = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true) as? [String] {
 //            let dir = dirs[0] //documents directory
