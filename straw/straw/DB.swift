@@ -350,54 +350,63 @@ class DB {
     }
     
     // Thống kê theo ngày - Đếm coi nhân viên đã làm xong bao nhiêu hộp của từ ngày đến ngày
-    static func GetBoxCount(workerid: Int, fromday: Int, frommonth: Int, fromyear: Int, today: Int) ->Int{
+    static func GetBoxCount(workerid: Int, fromday: Int, frommonth: Int, fromyear: Int, today: Int) ->[Int]{
         let db = GetDB()
+        var total = 0
+        var boxTypes = ["250g", "500g", "1kg"]
+        var boxCount = [0, 0, 0]
         
-        let count = db.scalar("SELECT count(*) FROM taskresult where workerid=\(workerid) and day>=\(fromday) and month=\(frommonth) and year=\(fromyear) and day<=\(today)" ) as! Int64
+        for i in 0..<boxTypes.count {
+            let type = boxTypes[i]
+            let count = db.scalar("SELECT count(*) FROM taskresult where workerid=\(workerid) and day>=\(fromday) and month=\(frommonth) and year=\(fromyear) and day<=\(today) and boxtype='\(type)'" ) as! Int64
+            boxCount[i] = Int(count)
+        }
         
-        return Int(count)
+        total = boxCount.reduce(0, combine: +)
+        boxCount += [total]
+        
+        return boxCount
     }
     
-    static func GetBoxCount(type: String, workerid: Int, fromday: Int, frommonth: Int, fromyear: Int, today: Int) ->Int{
-        let db = GetDB()
-        
-        let count = db.scalar("SELECT count(*) FROM taskresult where workerid=\(workerid) and day>=\(fromday) and month=\(frommonth) and year=\(fromyear) and day<=\(today) and boxtype='\(type)'" ) as! Int64
-        
-        return Int(count)
-    }
     
     // Thống kê theo tháng
-    static func GetBoxCount(workerid: Int, frommonth: Int, fromyear: Int) ->Int{
+    static func GetBoxCount(workerid: Int, frommonth: Int, fromyear: Int) -> [Int]{
         let db = GetDB()
+        var total = 0
+        var boxTypes = ["250g", "500g", "1kg"]
+        var boxCount = [0, 0, 0]
         
-        let count = db.scalar("SELECT count(*) FROM taskresult where workerid=\(workerid) and month=\(frommonth) and year=\(fromyear)" ) as! Int64
+        for i in 0..<boxTypes.count {
+            let type = boxTypes[i]
+            let count = db.scalar("SELECT count(*) FROM taskresult where workerid=\(workerid) and month=\(frommonth) and year=\(fromyear) and boxtype='\(type)'" ) as! Int64
+            boxCount[i] = Int(count)
+        }
         
-        return Int(count)
+        total = boxCount.reduce(0, combine: +)
+        boxCount += [total]
+        
+        return boxCount
     }
     
-    static func GetBoxCount(type:String, workerid: Int, frommonth: Int, fromyear: Int) ->Int{
-        let db = GetDB()
-        
-        let count = db.scalar("SELECT count(*) FROM taskresult where workerid=\(workerid) and month=\(frommonth) and year=\(fromyear) and boxtype='\(type)'" ) as! Int64
-        
-        return Int(count)
-    }
-    
+   
     // Thống kê theo năm
-    static func GetBoxCount(workerid: Int, fromyear: Int) ->Int{
+    static func GetBoxCount(workerid: Int, fromyear: Int) -> [Int]{
         let db = GetDB()
         
-        let count = db.scalar("SELECT count(*) FROM taskresult where workerid=\(workerid) and year=\(fromyear)" ) as! Int64
+        var total = 0
+        var boxTypes = ["250g", "500g", "1kg"]
+        var boxCount = [0, 0, 0]
         
-        return Int(count)
-    }
-    
-    static func GetBoxCount(type:String, workerid: Int, fromyear: Int) ->Int{
-        let db = GetDB()
+        for i in 0..<boxTypes.count {
+            let type = boxTypes[i]
+            let count = db.scalar("SELECT count(*) FROM taskresult where workerid=\(workerid) and year=\(fromyear) and boxtype='\(type)'" ) as! Int64
+            boxCount[i] = Int(count)
+        }
+            
+        total = boxCount.reduce(0, combine: +)
+        boxCount += [total]
         
-        let count = db.scalar("SELECT count(*) FROM taskresult where workerid=\(workerid) and year=\(fromyear) and boxtype='\(type)'" ) as! Int64
-        
-        return Int(count)
+        return boxCount
     }
     
     // Thực hiện thống kê toàn bộ
@@ -419,10 +428,11 @@ class DB {
                 let worker = Worker(id: row[id], name: row[name], cid: contractor.ContractorID, phoneno: row[phoneno])
                 
                 // Dùng chung số hộp và tổng số hộp
-                worker.BoxNumber = self.GetBoxCount(Int(worker.Workerid), fromday: fromday, frommonth: frommonth, fromyear: fromyear, today: today)
-                let box250 = self.GetBoxCount("250g", workerid: Int(worker.Workerid), fromday: fromday, frommonth: frommonth, fromyear: fromyear, today: today)
-                let box500 = self.GetBoxCount("500g", workerid: Int(worker.Workerid), fromday: fromday, frommonth: frommonth, fromyear: fromyear, today: today)
-                let box1kg = self.GetBoxCount("1kg", workerid: Int(worker.Workerid), fromday: fromday, frommonth: frommonth, fromyear: fromyear, today: today)
+                let boxCount = self.GetBoxCount(Int(worker.Workerid), fromday: fromday, frommonth: frommonth, fromyear: fromyear, today: today)
+                worker.BoxNumber = boxCount[3]
+                let box250 = boxCount[0]
+                let box500 = boxCount[1]
+                let box1kg = boxCount[2]
                 
                 worker.BoxType = "     250g: \(box250)      ||      500g: \(box500)      ||      1kg: \(box1kg)"
                 
@@ -452,10 +462,11 @@ class DB {
                 let worker = Worker(id: row[id], name: row[name], cid: contractor.ContractorID, phoneno: row[phoneno])
                 
                 // Dùng chung số hộp và tổng số hộp
-                worker.BoxNumber = self.GetBoxCount(Int(worker.Workerid), frommonth: frommonth, fromyear: fromyear)
-                let box250 = self.GetBoxCount("250g", workerid: Int(worker.Workerid), frommonth: frommonth, fromyear: fromyear)
-                let box500 = self.GetBoxCount("500g", workerid: Int(worker.Workerid), frommonth: frommonth, fromyear: fromyear)
-                let box1kg = self.GetBoxCount("1kg", workerid: Int(worker.Workerid),  frommonth: frommonth, fromyear: fromyear)
+                let boxCount = self.GetBoxCount(Int(worker.Workerid), frommonth: frommonth, fromyear: fromyear)
+                worker.BoxNumber = boxCount[3]
+                let box250 = boxCount[0]
+                let box500 = boxCount[1]
+                let box1kg = boxCount[2]
                 
                 worker.BoxType = "     250g: \(box250)      ||      500g: \(box500)      ||      1kg: \(box1kg)"
                 
@@ -485,11 +496,11 @@ class DB {
                 let worker = Worker(id: row[id], name: row[name], cid: contractor.ContractorID, phoneno: row[phoneno])
                 
                 // Dùng chung số hộp và tổng số hộp
-                worker.BoxNumber = self.GetBoxCount(Int(worker.Workerid), fromyear: fromyear)
-                let box250 = self.GetBoxCount("250g", workerid: Int(worker.Workerid), fromyear: fromyear)
-                let box500 = self.GetBoxCount("500g", workerid: Int(worker.Workerid), fromyear: fromyear)
-                let box1kg = self.GetBoxCount("1kg", workerid: Int(worker.Workerid),  fromyear: fromyear)
-                
+                let boxCount = self.GetBoxCount(Int(worker.Workerid), fromyear: fromyear)
+                worker.BoxNumber = boxCount[3]
+                let box250 = boxCount[0]
+                let box500 = boxCount[1]
+                let box1kg = boxCount[2]
                 worker.BoxType = "     250g: \(box250)      ||      500g: \(box500)      ||      1kg: \(box1kg)"
                 
                 list += [worker]
