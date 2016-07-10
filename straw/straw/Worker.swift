@@ -23,6 +23,8 @@ class Worker{
     
     var LastActionTime = "" // Lưu lại lần thao tác cuối cùng
     
+    var boxCount = [Int]() // Dùng khi thống kê
+    
     init(id: Int64, name: String, cid: Int64, phoneno: String?){
         Workerid = id
         WorkerName = name

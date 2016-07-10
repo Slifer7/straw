@@ -62,30 +62,44 @@ class StatisticsController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func btnExport_Tapped() {
-//        var filename = ""
-//        if choice == "today" {
-//            filename = "Statistics_\(fromYear)\(fromMonth)\(fromDay).xlsx"
-//            
-//        } else if choice == "week"{
-//            filename = "Statistics_\(fromYear)\(fromMonth)\(fromDay)_\(toDay).xlsx"
-//        } else if choice == "month"{
-//            filename = "Statistics_\(fromYear)\(fromMonth).xlsx"
-//        } else if choice == "year"{
-//            filename = "Statistics_\(fromYear).xlsx"
-//        }
+        var filename = ""
+        if choice == "today" {
+            filename = "Statistics_\(fromYear)\(fromMonth)\(fromDay).csv"
+            
+        } else if choice == "week"{
+            filename = "Statistics_\(fromYear)\(fromMonth)\(fromDay)_\(toDay).csv"
+        } else if choice == "month"{
+            filename = "Statistics_\(fromYear)\(fromMonth).csv"
+        } else if choice == "year"{
+            filename = "Statistics_\(fromYear).csv"
+        }
         
-       // if let dirs : [String] = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true) as? [String] {
-//            let dir = dirs[0] //documents directory
-//            let path = dir.stringByAppendingString(filename);
-//            let text = "some text"
-//            
-//            //writing
-//            text.writeToFile(path, atomically: false, encoding: NSUTF8StringEncoding, error: nil)
-//            
-//            //reading
-//            let text2 = String(contentsOfFile: path, encoding: NSUTF8StringEncoding, error: nil)
-//            print(text2)
-        //}
+        let header = "Contractor name,Worker name,Worker phone,Total,250g,500g,1kg"
+        var data = header + "\r\n"
+        
+        for i in 0..<contractors.count{
+            let contractor = contractors[i]
+            for j in 0..<workers[i].count {
+                let worker = workers[i][j]
+                let line = "\(contractor.ContractorName),\(worker.WorkerName),\(worker.PhoneNumber!),\(worker.boxCount[3]),\(worker.boxCount[0]),\(worker.boxCount[1]),\(worker.boxCount[2])\r\n"
+                data += line
+            }
+        }
+        
+        // Export data to file
+        if let dir = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true).first {
+            let path = NSURL(fileURLWithPath: dir).URLByAppendingPathComponent(filename)
+            do {
+                try data.writeToURL(path, atomically: false, encoding: NSUTF8StringEncoding)
+                
+                // Debug, try to read back
+                //let content = try NSString(contentsOfURL: path, encoding: NSUTF8StringEncoding)
+                //print(content)
+            }
+            catch {}
+        }
+        
+        MessageBox.Show(self, title: "Done", message: "Export successfully to \(filename)!")
     }
     
     // MARK: Table view

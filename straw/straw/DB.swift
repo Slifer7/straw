@@ -409,7 +409,7 @@ class DB {
         return boxCount
     }
     
-    // Thực hiện thống kê toàn bộ
+    // Thực hiện thống kê toàn bộ từ ngày nào đến ngày nào trong năm
     static func DoStatistics(fromday: Int, frommonth: Int, fromyear: Int, today: Int) -> (Contractors: [Contractor], Workers: [[Worker]]){
         let contractors = self.GetContractors()
         let db = GetDB()
@@ -433,7 +433,7 @@ class DB {
                 let box250 = boxCount[0]
                 let box500 = boxCount[1]
                 let box1kg = boxCount[2]
-                
+                worker.boxCount = boxCount
                 worker.BoxType = "     250g: \(box250)      ||      500g: \(box500)      ||      1kg: \(box1kg)"
                 
                 list += [worker]
@@ -444,6 +444,7 @@ class DB {
         return (contractors, workers)
     }
     
+    // Thống kê theo tháng
     static func DoStatistics(frommonth: Int, fromyear: Int) -> (Contractors: [Contractor], Workers: [[Worker]]){
         let contractors = self.GetContractors()
         let db = GetDB()
@@ -467,7 +468,7 @@ class DB {
                 let box250 = boxCount[0]
                 let box500 = boxCount[1]
                 let box1kg = boxCount[2]
-                
+                worker.boxCount = boxCount
                 worker.BoxType = "     250g: \(box250)      ||      500g: \(box500)      ||      1kg: \(box1kg)"
                 
                 list += [worker]
@@ -478,6 +479,7 @@ class DB {
         return (contractors, workers)
     }
 
+    // Thống kê theo năm
     static func DoStatistics(fromyear: Int) -> (Contractors: [Contractor], Workers: [[Worker]]){
         let contractors = self.GetContractors()
         let db = GetDB()
@@ -502,6 +504,7 @@ class DB {
                 let box500 = boxCount[1]
                 let box1kg = boxCount[2]
                 worker.BoxType = "     250g: \(box250)      ||      500g: \(box500)      ||      1kg: \(box1kg)"
+                worker.boxCount = boxCount
                 
                 list += [worker]
             }
