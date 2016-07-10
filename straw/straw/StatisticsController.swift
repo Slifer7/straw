@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import MessageUI
+import Foundation
 
-class StatisticsController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class StatisticsController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate {
     // MARK: UI elements
     @IBOutlet weak var tblWorkers: UITableView!
     @IBOutlet weak var lblCondition: UILabel!
@@ -92,14 +94,49 @@ class StatisticsController: UIViewController, UITableViewDelegate, UITableViewDa
             do {
                 try data.writeToURL(path, atomically: false, encoding: NSUTF8StringEncoding)
                 
-                // Debug, try to read back
-                //let content = try NSString(contentsOfURL: path, encoding: NSUTF8StringEncoding)
-                //print(content)
+                let sendMail = UIAlertAction(title: "Send mail", style: .Default){
+                    UIAlertAction in
+                    self.SendMail(NSData(contentsOfURL: path)!, filename: filename)
+                }
+                
+                let ok =  UIAlertAction(title: "OK", style: .Default){
+                    UIAlertAction in
+                    // Currently do nothing
+                }
+                
+                MessageBox.Show(self, title: "Done", message: "Export successfully to \(filename)!", actions: [sendMail, ok])
             }
             catch {}
         }
         
-        MessageBox.Show(self, title: "Done", message: "Export successfully to \(filename)!")
+        
+    }
+    
+    func SendMail(path: NSData, filename: String){
+        let mailComposeViewController = configuredMailComposeViewController(path, filename: filename)
+        if MFMailComposeViewController.canSendMail() {
+            self.presentViewController(mailComposeViewController, animated: true, completion: nil)
+        } else {
+            MessageBox.Show(self, title: "Error", message: "Cannot send email")
+        }
+    }
+    
+    func configuredMailComposeViewController(path: NSData, filename: String) -> MFMailComposeViewController {
+        let mailComposerVC = MFMailComposeViewController()
+        mailComposerVC.mailComposeDelegate = self
+        
+        mailComposerVC.setToRecipients(["sample@gmail.com"])
+        mailComposerVC.setSubject("Statistics")
+        mailComposerVC.setMessageBody("Please check attachment for detailed statistics.", isHTML: false)
+        
+        mailComposerVC.addAttachmentData(path, mimeType: "text/plain", fileName: filename)
+        
+        
+        return mailComposerVC
+    }
+    
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
     }
     
     // MARK: Table view
