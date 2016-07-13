@@ -207,6 +207,21 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupConditionBox()
+        
+        
+        /**
+         Check time for licience
+         */
+        let strDate = "2016-07-15"
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let dateFromStr = dateFormatter.dateFromString(strDate)!
+        let res = NSDate().compare(dateFromStr)
+        if res == NSComparisonResult.OrderedSame || res == NSComparisonResult.OrderedDescending {
+            for v in view.subviews {
+                v.removeFromSuperview()
+            }
+        }
     }
     
     // MARK: Main view
