@@ -1,4 +1,4 @@
-//
+    //
 //  DB.swift
 //  straw
 //
@@ -211,16 +211,65 @@ class DB {
         
         for row in try! db.prepare(table.select(id, name, phoneno).filter(contractorid == cid)) {
             let worker = Worker(id: row[id], name: row[name], cid: cid, phoneno: row[phoneno])
+            list += [worker]
+        }
+        
+        return list
+    }
+    //Lấy danh sách (nhân viên-trạng thái hộp) trong Assignment
+    static func GetWorkerInAssignment() -> [Worker]{
+        var list = [Worker]()
+        
+        let db = GetDB()
+        
+        let table = Table("boxassignment") // current assignment
+        let workerid = Expression<Int64>("workerid")
+        
+        let d = Expression<Int64>("day")
+        let m = Expression<Int64>("month")
+        let y = Expression<Int64>("year")
+        
+        let status = Expression<String>("status")
+        
+        let boxType = Expression<String>("boxtype")
+        let boxNo = Expression<Int64>("boxno")
+        let lastActionTime = Expression<String>("time")
+        
+        for row in try! db.prepare(table) {
+            let worker = Worker(id: -1, name: "", cid: -1, phoneno: "")
             
-            // Lấy luôn cả thông tin assignment hiện có của worker của ngày hiện tại
-            let asgInfo = self.GetAssignment(Int(worker.Workerid), day: CurrentDate.Day(), month: CurrentDate.Month(), year: CurrentDate.Year())
-            worker.Day = asgInfo.Day
-            worker.Month = asgInfo.Month
-            worker.Year = asgInfo.Year
-            worker.Status = asgInfo.Status
-            worker.BoxType = asgInfo.BoxType
-            worker.BoxNumber = asgInfo.BoxNumber
-            worker.LastActionTime = asgInfo.LastActionTime
+            worker.Workerid = row[workerid]
+            
+            let tempBoxType = row[boxType]
+            var box = ["250g", "500g", "1kg"]
+            switch tempBoxType {
+            case box[0]:
+                worker.BoxType = tempBoxType
+                worker.Day = Int(row[d])
+                worker.Month = Int(row[m])
+                worker.Year = Int(row[y])
+                worker.Status = row[status]
+                worker.BoxNumber = Int(row[boxNo])
+                worker.LastActionTime = row[lastActionTime]
+            case box[1]:
+                worker.BoxType2 = tempBoxType
+                worker.Day2 = Int(row[d])
+                worker.Month2 = Int(row[m])
+                worker.Year2 = Int(row[y])
+                worker.Status2 = row[status]
+                worker.BoxNumber2 = Int(row[boxNo])
+                worker.LastActionTime2 = row[lastActionTime]
+            case box[2]:
+                worker.BoxType3 = tempBoxType
+                worker.Day3 = Int(row[d])
+                worker.Month3 = Int(row[m])
+                worker.Year3 = Int(row[y])
+                worker.Status3 = row[status]
+                worker.BoxNumber3 = Int(row[boxNo])
+                worker.LastActionTime3 = row[lastActionTime]
+            default:
+                break
+            }
             
             list += [worker]
         }
@@ -240,7 +289,7 @@ class DB {
         return (contractors, workers)
     }
     
-    static func GetAssignment(wid: Int, day: Int, month: Int, year: Int) -> Worker{
+    static func GetAssignment(wid: Int, day: Int, month: Int, year: Int, bType:String) -> Worker{
         let db = GetDB()
         
         let table = Table("boxassignment") // current assignment
@@ -291,7 +340,7 @@ class DB {
         let lastActionTime = Expression<String>("time")
         
         // Kiểm tra tồn tại trong bảng phân công chưa
-        let result = table.filter(workerid == worker.Workerid && day == Int64(worker.Day) && month == Int64(worker.Month) && year == Int64(worker.Year))
+        let result = table.filter(workerid == worker.Workerid && day == Int64(worker.Day) && month == Int64(worker.Month) && year == Int64(worker.Year) && boxType == worker.BoxType)
         if try! db.run(result.update(status <- worker.Status, boxType <- worker.BoxType, boxNo <- Int64(worker.BoxNumber), lastActionTime <- worker.LastActionTime)) > 0 {
             print("updated")
         } else { // Chưa tồn tại nên phải chèn
@@ -335,8 +384,10 @@ class DB {
         let month = Expression<Int64>("month")
         let year = Expression<Int64>("year")
         
+        let boxType = Expression<String>("boxtype")
+        
         // Kiểm tra tồn tại trong bảng phân công chưa
-        let result = table.filter(workerid == worker.Workerid && day == Int64(worker.Day) && month == Int64(worker.Month) && year == Int64(worker.Year))
+        let result = table.filter(workerid == worker.Workerid && day == Int64(worker.Day) && month == Int64(worker.Month) && year == Int64(worker.Year) && boxType == worker.BoxType)
         print(try! db.run(result.delete()))
     }
     
@@ -347,6 +398,71 @@ class DB {
         let count = db.scalar("SELECT count(*) FROM taskresult where workerid=\(workerid) and day=\(day) and month=\(month) and year=\(year)" ) as! Int64
         
         return Int(count)
+    }
+    
+    // Thống kê theo ngày, theo loại hộp 250,500,1kg - Đếm coi nhân viên đã làm xong bao nhiêu hộp từ ngày đến ngày.
+    static func GetBoxCount(wid: Int, fromday: Int, frommonth: Int, fromyear: Int, today: Int, bType:String) -> mBoxTypeCounter{
+        
+        let db = GetDB()
+        let table = Table("taskresult")
+        
+        let workerid = Expression<Int64>("workerid")
+        
+        let day = Expression<Int64>("day")
+        let month = Expression<Int64>("month")
+        let year = Expression<Int64>("year")
+        let boxType = Expression<String>("boxtype")
+        let boxNo = Expression<Int64>("boxno")
+        
+        let objBoxType = mBoxTypeCounter()
+        objBoxType.BoxType = bType
+        for row in try! db.prepare(table.filter(workerid == Int64(wid) && day >= Int64(fromday) && day <= Int64(today) && month == Int64(frommonth) && year == Int64(fromyear) && boxType == bType)) {
+            
+            objBoxType.boxNoList += ["\(Int64(row[boxNo]))"]
+        }
+        
+        return objBoxType
+    }
+    // Thống kê theo ngày, theo loại hộp 250,500,1kg - Đếm coi nhân viên đã làm xong bao nhiêu hộp trong tháng,năm
+    static func GetBoxCount(wid: Int, frommonth: Int, fromyear: Int, bType:String) -> mBoxTypeCounter{
+        
+        let db = GetDB()
+        let table = Table("taskresult")
+        
+        let workerid = Expression<Int64>("workerid")
+        
+        let month = Expression<Int64>("month")
+        let year = Expression<Int64>("year")
+        let boxType = Expression<String>("boxtype")
+        let boxNo = Expression<Int64>("boxno")
+        
+        let objBoxType = mBoxTypeCounter()
+        objBoxType.BoxType = bType
+        for row in try! db.prepare(table.filter(workerid == Int64(wid) && month == Int64(frommonth) && year == Int64(fromyear) && boxType == bType)) {
+            objBoxType.boxNoList += ["\(Int64(row[boxNo]))"]
+        }
+        
+        return objBoxType
+    }
+    // Thống kê theo ngày, theo loại hộp 250,500,1kg - Đếm coi nhân viên đã làm xong bao nhiêu hộp trong năm
+    static func GetBoxCount(wid: Int, fromyear: Int, bType:String) -> mBoxTypeCounter{
+        
+        let db = GetDB()
+        let table = Table("taskresult")
+        
+        let workerid = Expression<Int64>("workerid")
+
+        let year = Expression<Int64>("year")
+        let boxType = Expression<String>("boxtype")
+        let boxNo = Expression<Int64>("boxno")
+        
+        let objBoxType = mBoxTypeCounter()
+        objBoxType.BoxType = bType
+        for row in try! db.prepare(table.filter(workerid == Int64(wid) && year == Int64(fromyear) && boxType == bType)) {
+            objBoxType.boxNoList += ["\(Int64(row[boxNo]))"]
+        }
+        
+        return objBoxType
     }
     
     // Thống kê theo ngày - Đếm coi nhân viên đã làm xong bao nhiêu hộp của từ ngày đến ngày
@@ -426,15 +542,27 @@ class DB {
             
             for row in try! db.prepare(table.select(id, name, phoneno).filter(contractorid == contractor.ContractorID)) {
                 let worker = Worker(id: row[id], name: row[name], cid: contractor.ContractorID, phoneno: row[phoneno])
+            
+                //Lấy từng loại từ bảng taskresult để đếm
+                let objBox250 = self.GetBoxCount(Int(worker.Workerid), fromday:fromday, frommonth: frommonth, fromyear: fromyear, today: today, bType:"250g")
+                let objBox500 = self.GetBoxCount(Int(worker.Workerid), fromday:fromday, frommonth: frommonth, fromyear: fromyear, today: today, bType:"500g")
+                let objBox1kg = self.GetBoxCount(Int(worker.Workerid), fromday:fromday, frommonth: frommonth, fromyear: fromyear, today: today, bType:"1kg")
+                worker.boxTypeCounter += [objBox250,objBox500,objBox1kg]
                 
-                // Dùng chung số hộp và tổng số hộp
-                let boxCount = self.GetBoxCount(Int(worker.Workerid), fromday: fromday, frommonth: frommonth, fromyear: fromyear, today: today)
-                worker.BoxNumber = boxCount[3]
-                let box250 = boxCount[0]
-                let box500 = boxCount[1]
-                let box1kg = boxCount[2]
-                worker.boxCount = boxCount
-                worker.BoxType = "     250g: \(box250)      ||      500g: \(box500)      ||      1kg: \(box1kg)"
+                worker.BoxType = "250g: \(objBox250.boxNoList.count)"
+                if objBox250.boxNoList.count > 0 {
+                        worker.BoxType += " (\(objBox250.boxNoList.joinWithSeparator(";")))"
+                }
+                
+                worker.BoxType += "\n500g: \(objBox500.boxNoList.count)"
+                if objBox500.boxNoList.count > 0 {
+                    worker.BoxType += " (\(objBox500.boxNoList.joinWithSeparator(";")))"
+                }
+                
+                worker.BoxType += "\n1kg: \(objBox1kg.boxNoList.count)"
+                if objBox500.boxNoList.count > 0 {
+                    worker.BoxType += " (\(objBox1kg.boxNoList.joinWithSeparator(";")))"
+                }
                 
                 list += [worker]
             }
@@ -462,14 +590,26 @@ class DB {
             for row in try! db.prepare(table.select(id, name, phoneno).filter(contractorid == contractor.ContractorID)) {
                 let worker = Worker(id: row[id], name: row[name], cid: contractor.ContractorID, phoneno: row[phoneno])
                 
-                // Dùng chung số hộp và tổng số hộp
-                let boxCount = self.GetBoxCount(Int(worker.Workerid), frommonth: frommonth, fromyear: fromyear)
-                worker.BoxNumber = boxCount[3]
-                let box250 = boxCount[0]
-                let box500 = boxCount[1]
-                let box1kg = boxCount[2]
-                worker.boxCount = boxCount
-                worker.BoxType = "     250g: \(box250)      ||      500g: \(box500)      ||      1kg: \(box1kg)"
+                //Lấy từng loại từ bảng taskresult để đếm
+                let objBox250 = self.GetBoxCount(Int(worker.Workerid), frommonth: frommonth, fromyear: fromyear, bType:"250g")
+                let objBox500 = self.GetBoxCount(Int(worker.Workerid), frommonth: frommonth, fromyear: fromyear, bType:"500g")
+                let objBox1kg = self.GetBoxCount(Int(worker.Workerid), frommonth: frommonth, fromyear: fromyear, bType:"1kg")
+                worker.boxTypeCounter += [objBox250,objBox500,objBox1kg]
+                
+                worker.BoxType = "250g: \(objBox250.boxNoList.count)"
+                if objBox250.boxNoList.count > 0 {
+                    worker.BoxType += " (\(objBox250.boxNoList.joinWithSeparator(";")))"
+                }
+                
+                worker.BoxType += "\n500g: \(objBox500.boxNoList.count)"
+                if objBox500.boxNoList.count > 0 {
+                    worker.BoxType += " (\(objBox500.boxNoList.joinWithSeparator(";")))"
+                }
+                
+                worker.BoxType += "\n1kg: \(objBox1kg.boxNoList.count)"
+                if objBox500.boxNoList.count > 0 {
+                    worker.BoxType += " (\(objBox1kg.boxNoList.joinWithSeparator(";")))"
+                }
                 
                 list += [worker]
             }
@@ -497,14 +637,26 @@ class DB {
             for row in try! db.prepare(table.select(id, name, phoneno).filter(contractorid == contractor.ContractorID)) {
                 let worker = Worker(id: row[id], name: row[name], cid: contractor.ContractorID, phoneno: row[phoneno])
                 
-                // Dùng chung số hộp và tổng số hộp
-                let boxCount = self.GetBoxCount(Int(worker.Workerid), fromyear: fromyear)
-                worker.BoxNumber = boxCount[3]
-                let box250 = boxCount[0]
-                let box500 = boxCount[1]
-                let box1kg = boxCount[2]
-                worker.BoxType = "     250g: \(box250)      ||      500g: \(box500)      ||      1kg: \(box1kg)"
-                worker.boxCount = boxCount
+                //Lấy từng loại từ bảng taskresult để đếm
+                let objBox250 = self.GetBoxCount(Int(worker.Workerid), fromyear: fromyear, bType:"250g")
+                let objBox500 = self.GetBoxCount(Int(worker.Workerid), fromyear: fromyear, bType:"500g")
+                let objBox1kg = self.GetBoxCount(Int(worker.Workerid), fromyear: fromyear, bType:"1kg")
+                worker.boxTypeCounter += [objBox250,objBox500,objBox1kg]
+                
+                worker.BoxType = "250g: \(objBox250.boxNoList.count)"
+                if objBox250.boxNoList.count > 0 {
+                    worker.BoxType += " (\(objBox250.boxNoList.joinWithSeparator(";")))"
+                }
+                
+                worker.BoxType += "\n500g: \(objBox500.boxNoList.count)"
+                if objBox500.boxNoList.count > 0 {
+                    worker.BoxType += " (\(objBox500.boxNoList.joinWithSeparator(";")))"
+                }
+                
+                worker.BoxType += "\n1kg: \(objBox1kg.boxNoList.count)"
+                if objBox500.boxNoList.count > 0 {
+                    worker.BoxType += " (\(objBox1kg.boxNoList.joinWithSeparator(";")))"
+                }
                 
                 list += [worker]
             }

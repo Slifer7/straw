@@ -17,19 +17,56 @@ class Worker{
     var Month = -1
     var Year = -1
     
+    var Day2 = -1
+    var Month2 = -1
+    var Year2 = -1
+    
+    var Day3 = -1
+    var Month3 = -1
+    var Year3 = -1
+    
     var Status = "" // "", Taken, Finished
+    var Status2 = "" // "", Taken, Finished
+    var Status3 = "" // "", Taken, Finished
+    
     var BoxNumber = -1
+    var BoxNumber2 = -1
+    var BoxNumber3 = -1
+    
     var BoxType = "" // 250g 500g or 1kg
+    var BoxType2 = "" // 250g 500g or 1kg
+    var BoxType3 = "" // 250g 500g or 1kg
     
     var LastActionTime = "" // Lưu lại lần thao tác cuối cùng
+    var LastActionTime2 = "" // Lưu lại lần thao tác cuối cùng
+    var LastActionTime3 = "" // Lưu lại lần thao tác cuối cùng
     
     var boxCount = [Int]() // Dùng khi thống kê
+    
+    var boxTypeCounter = [mBoxTypeCounter]()
     
     init(id: Int64, name: String, cid: Int64, phoneno: String?){
         Workerid = id
         WorkerName = name
         ContractorID = cid
         PhoneNumber = phoneno
+    }
+    
+    init(id: Int64, name: String, cid: Int64, phoneno: String?,
+         day: Int, month:Int, year:Int,
+         status:String, boxNumber: Int, boxType:String, lastActionTime:String){
+        Workerid = id
+        WorkerName = name
+        ContractorID = cid
+        PhoneNumber = phoneno
+        
+        Day = day
+        Month = month
+        Year = year
+        Status = status
+        BoxNumber = boxNumber
+        BoxType = boxType
+        LastActionTime = lastActionTime
     }
     
     static func GetWorkersGroupByContractor() -> (Contractors: [Contractor], Workers: [[Worker]]){

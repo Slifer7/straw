@@ -57,6 +57,8 @@ class StatisticsController: UIViewController, UITableViewDelegate, UITableViewDa
         let backButton = UIBarButtonItem(title: "Home", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(backButton_Tapped))
         self.navigationItem.setLeftBarButtonItem(backButton, animated: true)
         
+        self.tblWorkers.estimatedRowHeight = 100.0
+        self.tblWorkers.rowHeight = UITableViewAutomaticDimension
     }
     
     func backButton_Tapped() {
@@ -76,14 +78,14 @@ class StatisticsController: UIViewController, UITableViewDelegate, UITableViewDa
             filename = "Statistics_\(fromYear).csv"
         }
         
-        let header = "Contractor name,Worker name,Worker phone,Total,250g,500g,1kg"
+        let header = "Contractor name,Worker name,Worker phone,250g,500g,1kg"
         var data = header + "\r\n"
         
         for i in 0..<contractors.count{
             let contractor = contractors[i]
             for j in 0..<workers[i].count {
                 let worker = workers[i][j]
-                let line = "\(contractor.ContractorName),\(worker.WorkerName),\(worker.PhoneNumber!),\(worker.boxCount[3]),\(worker.boxCount[0]),\(worker.boxCount[1]),\(worker.boxCount[2])\r\n"
+                let line = "\(contractor.ContractorName),\(worker.WorkerName),\(worker.PhoneNumber!),\(worker.boxTypeCounter[0].boxNoList.count),\(worker.boxTypeCounter[1].boxNoList.count),\(worker.boxTypeCounter[2].boxNoList.count)\r\n"
                 data += line
             }
         }
@@ -157,7 +159,7 @@ class StatisticsController: UIViewController, UITableViewDelegate, UITableViewDa
         let cell = tblWorkers.dequeueReusableCellWithIdentifier("StatisticsCellID", forIndexPath: indexPath) as! StatisticsCell
         let worker = workers[indexPath.section][indexPath.row]
         cell.lblWorkerName.text = worker.WorkerName
-        cell.lblInfo.text = "Total box: \(worker.BoxNumber). \(worker.BoxType)"
+        cell.lblInfo.text = "\(worker.BoxType)"
         return cell
     }
     

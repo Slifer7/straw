@@ -212,7 +212,7 @@ class ViewController: UIViewController {
         /**
          Check time for licience
          */
-        let strDate = "2016-07-15"
+        let strDate = "2016-07-19"
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let dateFromStr = dateFormatter.dateFromString(strDate)!

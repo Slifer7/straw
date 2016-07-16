@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2B317AF41D3666AD004388F0 /* feedback02.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B317AF31D3666AD004388F0 /* feedback02.png */; };
+		2B317AF61D385CBC004388F0 /* BoxManCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B317AF51D385CBC004388F0 /* BoxManCell2.swift */; };
+		2B317AF81D393BAE004388F0 /* mBoxTypeCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B317AF71D393BAE004388F0 /* mBoxTypeCounter.swift */; };
 		743497F71D2F5EBA0093D237 /* StatisticsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743497F61D2F5EBA0093D237 /* StatisticsController.swift */; };
 		743497F91D2F61E60093D237 /* StatisticsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743497F81D2F61E60093D237 /* StatisticsCell.swift */; };
 		743497FB1D2F8CE60093D237 /* ContractorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743497FA1D2F8CE60093D237 /* ContractorController.swift */; };
@@ -43,6 +45,8 @@
 /* Begin PBXFileReference section */
 		2941CCDA67297A4D14118001 /* Pods-straw.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-straw.release.xcconfig"; path = "Pods/Target Support Files/Pods-straw/Pods-straw.release.xcconfig"; sourceTree = "<group>"; };
 		2B317AF31D3666AD004388F0 /* feedback02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = feedback02.png; sourceTree = "<group>"; };
+		2B317AF51D385CBC004388F0 /* BoxManCell2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxManCell2.swift; sourceTree = "<group>"; };
+		2B317AF71D393BAE004388F0 /* mBoxTypeCounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mBoxTypeCounter.swift; sourceTree = "<group>"; };
 		663801EBB907AAC90E3A6D87 /* Pods-straw.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-straw.debug.xcconfig"; path = "Pods/Target Support Files/Pods-straw/Pods-straw.debug.xcconfig"; sourceTree = "<group>"; };
 		743497F61D2F5EBA0093D237 /* StatisticsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsController.swift; sourceTree = "<group>"; };
 		743497F81D2F61E60093D237 /* StatisticsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsCell.swift; sourceTree = "<group>"; };
@@ -154,6 +158,7 @@
 		74C0934A1D2E394B00545C2B /* model */ = {
 			isa = PBXGroup;
 			children = (
+				2B317AF71D393BAE004388F0 /* mBoxTypeCounter.swift */,
 				74C0935B1D2E40EB00545C2B /* DB.swift */,
 				74C093611D2E535C00545C2B /* Contractor.swift */,
 				74C093631D2E536700545C2B /* Worker.swift */,
@@ -166,6 +171,7 @@
 			children = (
 				74C093371D2E388F00545C2B /* ViewController.swift */,
 				74C0935D1D2E45B900545C2B /* BoxManCell.swift */,
+				2B317AF51D385CBC004388F0 /* BoxManCell2.swift */,
 				74C0935F1D2E45C400545C2B /* BoxManController.swift */,
 				743497F61D2F5EBA0093D237 /* StatisticsController.swift */,
 				743497F81D2F61E60093D237 /* StatisticsCell.swift */,
@@ -238,7 +244,7 @@
 				TargetAttributes = {
 					74C093311D2E388F00545C2B = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = H63U8F484A;
+						DevelopmentTeam = BFE42N2P42;
 					};
 				};
 			};
@@ -338,8 +344,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				743497FB1D2F8CE60093D237 /* ContractorController.swift in Sources */,
+				2B317AF61D385CBC004388F0 /* BoxManCell2.swift in Sources */,
 				74F9DD811D2E89B3008B7A68 /* MessageBox.swift in Sources */,
 				74C0935E1D2E45B900545C2B /* BoxManCell.swift in Sources */,
+				2B317AF81D393BAE004388F0 /* mBoxTypeCounter.swift in Sources */,
 				74C093381D2E388F00545C2B /* ViewController.swift in Sources */,
 				743497F91D2F61E60093D237 /* StatisticsCell.swift in Sources */,
 				74C093361D2E388F00545C2B /* AppDelegate.swift in Sources */,
@@ -471,7 +479,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = straw/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dev7lab.straw;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dndstudio.straw;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -485,7 +493,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = straw/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dev7lab.straw;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dndstudio.straw;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
